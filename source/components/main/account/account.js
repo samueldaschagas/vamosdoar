@@ -1,13 +1,13 @@
 angular.module('app')
-  .controller('LoginAccount.Controller', function ($scope, $state, Auth, $q, Ref, $stateParams, notify, httpPending) {
+  .controller('MainAccount.Controller', function ($scope, $state, Auth, $q, Ref, $stateParams) {
 
-    if (!$stateParams.state)
-      $state.go("account", _.defaults({ state:'login' }, $stateParams));
+    if (Auth.currentUser) return $state.go("panel");
+
+    if (!$stateParams.state) $state.go("account", _.defaults({ state:'login' }, $stateParams));
 
     $scope.user = { isInstituicao: false};
 
     $scope.submit = function () {
-      httpPending(true);
 
       if ($stateParams.state === 'login') {
         return login()
@@ -72,14 +72,11 @@ angular.module('app')
     }
 
     function redirect () {
-      httpPending(false);
-      $state.go('home');
+      $state.go('panel');
     }
 
     function showError(err) {
-      httpPending(false);
-      err.type = 'error';
-      notify(err);
+      console.error(err);
     }
 
   })

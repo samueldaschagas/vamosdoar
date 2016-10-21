@@ -10,19 +10,15 @@ script#account(type='text/ng-template')
 
         md-card-content
           div(ng-if="$stateParams.state === 'signup'")
-            md-checkbox(ng-model='user.isInstituicao', aria-label='Conta Empresa') Instituição
+            md-checkbox(ng-model='user.isInstituicao', aria-label='Instituição') Instituição
             md-input-container.md-block
               label Nome
               input(type='text',
                   name="name",
                   ng-model="user.name",
                   required)
-
-          div(ng-if="$stateParams.state !== 'reset'")
-            +userEmail('accountForm')
-
-          div(ng-if="$stateParams.state !== 'forgot'")
-            +userPassword('accountForm')
+          +userEmail('accountForm')
+          +userPassword('accountForm')
 
         md-card-actions(layout='row')
 

@@ -17,6 +17,10 @@ mixin toolbar(appName)
           span.hide-xs.hide-sm Vamos Doar!
 
           span(flex)
+          md-button.md-icon-button(ng-if="currentUser", ng-click="logout()")
+            md-icon.material-icons power_settings_new
+
+
 
 
       if block

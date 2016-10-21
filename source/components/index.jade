@@ -6,12 +6,12 @@ html.no-js(lang=locale)
     script(src="https://js.iugu.com/v2")
     include _mixins/head
     script(src='//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
-    script(src=manifest['js/login.js'])
+    script(src=manifest['js/main.js'])
 
   body(ng-app='app', layout="column", ng-cloak, ng-controller="MainCtrl")
     +toolbar('Login')
       md-content.grey-bg(ui-view, flex, layout="column", layout-align="start center")
         +preloader
     //- Templates
-    include login/account/account
-    include login/home/home
+    include main/account/account
+    include main/panel/panel
