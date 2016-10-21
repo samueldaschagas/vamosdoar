@@ -9,7 +9,7 @@ angular.module('app')
 
       // Login
       .state("account", {
-        url: '/account?state&role&isPj&email&token&persona',
+        url: '/account?state',
         controller: "LoginAccount.Controller",
         templateUrl: 'account',
         resolve: {
@@ -25,53 +25,6 @@ angular.module('app')
         resolve: {
           // Espera pelo papel, mas todos podem entrar.
           currentUserRole: PERMISSION.waitForRole
-        }
-      })
-
-      .state("profile", {
-        url: "/profile",
-        controller: "LoginProfile.Controller",
-        templateUrl: "profile",
-        resolve: {
-          // Auth obrigatório
-          currentAuth: PERMISSION.requireAuth
-        }
-      })
-
-      .state("translate", {
-        url: "/translate",
-        controller: "TranslateCtrl",
-        templateUrl: "translate",
-        data: { appName: "Tradutor" }
-      })
-
-      .state("paymentmethods", {
-        url: "/paymentmethods?htsite&plan&partner",
-        controller: "LoginPaymentmethods.Controller",
-        templateUrl: "paymentmethods",
-        resolve: {
-          // Auth obrigatório
-          currentAuth: PERMISSION.requireAuth
-        }
-      })
-
-      .state("invoices", {
-        url: "/invoices",
-        controller: "LoginInvoices.Controller",
-        templateUrl: "invoices",
-        resolve: {
-          // Auth obrigatório
-          currentAuth: PERMISSION.requireAuth
-        }
-      })
-
-      .state("support", {
-        url: '/support',
-        controller: 'LoginSupport.Controller',
-        templateUrl: 'support',
-        showBackButton: true,
-        resolve: {
-          currentUser: PERMISSION.requireAuth
         }
       });
   });
