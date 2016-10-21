@@ -1,0 +1,17 @@
+doctype html
+html.no-js(lang=locale)
+
+  head
+    include _mixins/head
+
+  body
+
+    .margin-bottom-xsmall
+    .row
+      .small-12.columns.text-center
+        h2 Opsss!
+        h4 Esta página não existe!
+
+        if showStack
+          p= error
+        //- img(src="/images/hugo/hugo-erro500.png")

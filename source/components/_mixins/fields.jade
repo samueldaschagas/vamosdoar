@@ -1,0 +1,28 @@
+
+mixin userEmail(formName, model)
+  - model = model || 'user'
+
+  md-input-container.md-block
+    label Email
+    input(type='email',
+    name='email',
+    ng-model='#{model}.email',
+    ng-pattern='/^.+@.+\\..+$/',
+    required)
+    div(ng-messages='#{formName}.email.$error')
+      div(ng-message="pattern") Email inválido
+      div(ng-message="required") Email obrigatório
+
+mixin userPassword(formName, model)
+  - model = model || 'user'
+
+  md-input-container.md-block
+    label Senha
+    input(type='password',
+    name='password',
+    ng-model='#{model}.password',
+    minlength="6",
+    required)
+    div(ng-messages='#{formName}.password.$error')
+      div(ng-message='required') Senha obrigatória
+      div(ng-message='minlength') A senha precisa ter 6 ou mais caracteres

@@ -1,0 +1,38 @@
+{
+  "name": "iphonecenter",
+  "version": "0.0.0",
+  "authors": [
+    "Sávio Soares <savioroney@gmail.com>"
+  ],
+  "main": "app.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/source/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-chart.js": "~0.8.6",
+    "Chart.js": "~1.0.2",
+    "lodash": "~3.10.1",
+    "moment": "~2.10.6",
+    "angular-ui-sortable": "~0.13.4",
+    "angular-loading-bar": "~0.8.0",
+    "angular": "^1.5.0",
+    "angular-messages": "^1.5.0",
+    "angular-material": "^1.0.9",
+    "angular-material-data-table": "~0.10.9",
+    "angular-ui-router": "^0.3.0",
+    "ng-clip": "~0.2.6",
+    "md5": "~0.4.1",
+    "angular-cookies": "~1.5.6",
+    "angularfire": "^2.0.1"
+  },
+  "resolutions": {
+    "angular": "~1.4.8"
+  }
+}

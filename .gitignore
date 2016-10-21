@@ -1,5 +1,14 @@
-# IntelliJ project files
+rev-manifest.json
+public/
+
+node_modules/
+bower_components/
+
 .idea
 *.iml
-out
-gen
+.DS_Store
+Thumbs.db
+
+*.log
+
+temp.js

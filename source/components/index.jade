@@ -1,0 +1,17 @@
+include _mixins/partials
+include _mixins/fields
+doctype html
+html.no-js(lang=locale)
+  head
+    script(src="https://js.iugu.com/v2")
+    include _mixins/head
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+    script(src=manifest['js/main.js'])
+
+  body(ng-app='app', layout="column", ng-cloak, ng-controller="MainCtrl")
+    +toolbar('Login')
+      md-content.grey-bg(ui-view, flex, layout="column", layout-align="start center")
+        +preloader
+    //- Templates
+    include main/account/account
+    include main/panel/panel

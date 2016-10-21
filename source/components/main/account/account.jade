@@ -1,0 +1,35 @@
+script#account(type='text/ng-template')
+
+  form(name='accountForm', ng-submit="accountForm.$valid && submit()", novalidate)
+    .md-padding
+      md-card(style="width: 400px;")
+        md-card-title
+          md-card-title-text
+            span.md-headline(ng-show="$stateParams.state == 'signup'") Dados
+            br
+
+        md-card-content
+          div(ng-if="$stateParams.state === 'signup'")
+            md-checkbox(ng-model='user.isInstituicao', aria-label='Instituição') Instituição
+            md-input-container.md-block
+              label Nome
+              input(type='text',
+                  name="name",
+                  ng-model="user.name",
+                  required)
+          +userEmail('accountForm')
+          +userPassword('accountForm')
+
+        md-card-actions(layout='row')
+
+          span(flex)
+
+          md-button.md-primary.md-raised(aria-label="Criar Conta",
+          ng-disabled="httpPending()",
+          ng-click="$state.go('account', { state: 'signup'})",
+          ng-if="$stateParams.state === 'login'")
+            | Cadastrar
+
+          md-button.md-raised.md-accent(type="submit", aria-label="Enviar",
+          ng-disabled="httpPending() || accountForm.$invalid")
+            | {{({ signup: 'Cadastrar', login: 'Entrar'})[$stateParams.state]}}
