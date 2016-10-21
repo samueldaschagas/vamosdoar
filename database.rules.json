@@ -1,0 +1,11 @@
+{
+  "rules": {
+    // Admins podem ler e escrever tudo
+    ".read": true,
+    ".write": true,
+
+    "errors": {
+      "$error_id": { ".write": true }
+    }
+  }
+}

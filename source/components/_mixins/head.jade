@@ -1,0 +1,24 @@
+meta(charset='utf-8')
+title Hand Talk
+
+meta(http-equiv='X-UA-Compatible', content='IE=edge')
+meta(name='viewport', content='width=device-width, initial-scale=1.0')
+link(rel="icon", type="image/png", href="/images/favicon.png")
+meta(name="theme-color", content="#FF5722")
+
+//- Angular material and his friend
+link(rel='stylesheet', href=manifest['css/hack-devfest.css'])
+link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
+
+//- Initialize Firebase
+script(src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js")
+
+if !production
+  script.
+    console.warn("App rodando em modo DESENVOLVIMENTO");
+
+script.
+  firebase.initializeApp(!{JSON.stringify(firebaseConfig)});
+
+//- Já que o angular usa o firebase, tem que vir depois.
+script(src=manifest['js/libs.js'])

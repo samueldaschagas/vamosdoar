@@ -1,0 +1,52 @@
+script#account(type='text/ng-template')
+
+  form(name='accountForm', ng-submit="accountForm.$valid && submit()", novalidate)
+    .md-padding
+      md-card(style="width: 400px;")
+        md-card-title
+          md-card-title-text
+            span.md-headline(ng-show="$stateParams.state == 'signup'") Criar Conta
+            span.md-headline(ng-show="$stateParams.state == 'login'") Entrar {{$stateParams.role}}
+            span.md-headline(ng-show="$stateParams.state == 'forgot'") Esqueci a Senha
+            span.md-headline(ng-show="$stateParams.state == 'reset'") Redefinir Senha ({{user.email}})
+            span.md-body-1(ng-show="$stateParams.role == 'interpreter' && $stateParams.state == 'signup'")
+              | Conta Intérprete
+            br
+
+        md-card-content
+          div(ng-if="$stateParams.state === 'signup'")
+            md-checkbox(ng-model='user.isPj', aria-label='Conta Empresa') Conta Empresa
+            +userDisplayName('accountForm')
+
+          div(ng-if="user.isPj && $stateParams.state === 'signup'")
+
+            +companyName('accountForm')
+
+            +userPhoneNumber('accountForm')
+
+          div(ng-if="$stateParams.state !== 'reset'")
+            +userEmail('accountForm')
+
+          div(ng-if="$stateParams.state !== 'forgot'")
+            +userPassword('accountForm')
+
+          md-checkbox(ng-model='user.acceptTerms', aria-label='Aceitar Termos', ng-if="$stateParams.state === 'signup'")
+            p Li e concordo com os termos do&#32;
+              a(href="http://handtalk.me/eula", target="_blank") contrato
+
+        md-card-actions(layout='row')
+
+          md-button(ui-sref="account({state:'forgot'})", ng-show="$stateParams.state == 'login'")
+            | Esqueci a senha
+
+          span(flex)
+
+          md-button.md-primary.md-raised(aria-label="Criar Conta",
+          ng-disabled="httpPending()",
+          ng-click="$state.go('account', { state: 'signup', role: 'client'})",
+          ng-if="$stateParams.state === 'login'")
+            | Criar Conta
+
+          md-button.md-raised.md-accent(type="submit", aria-label="Enviar",
+          ng-disabled="httpPending() || accountForm.$invalid || (!user.acceptTerms && $stateParams.state === 'signup')")
+            | {{({ signup: 'Criar Conta', login: 'Entrar', forgot: 'Enviar Instruções', reset: 'Redefinir Senha'})[$stateParams.state]}}

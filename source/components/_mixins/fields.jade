@@ -1,0 +1,254 @@
+mixin htsiteTitle(formName, model)
+  - model = model || 'htsite'
+
+  md-input-container.md-block
+    label Título do Site
+    input(type='text',
+    name="title",
+    ng-model="#{model}.title",
+    maxlength="50",
+    minlength="3",
+    required)
+    div(ng-messages='#{formName}.title.$error')
+      div(ng-message="required") O título é obrigatório
+      div(ng-message="minlength") O título deve ter no mínimo 3 caracteres
+      div(ng-message="maxlength") O título deve ter no máximo 50 caracteres
+
+
+mixin htsiteDomain(formName, model)
+  - model = model || 'htsite'
+
+  md-input-container.md-block
+    label Domínio
+    input(type='text',
+    name="domain",
+    ng-model="#{model}.domain",
+    ng-pattern="/^[a-z0-9-\\.]+\\.[a-z0-9\\.]+$/",
+    required)
+    .hint(ng-show="#{formName}.domain.$valid || #{formName}.domain.$pristine")
+      | Formato: 'meusite.com' ou 'meublog.blogspot.com.br'
+    div(ng-messages='#{formName}.domain.$error')
+      div(ng-message="required") O domínio é obrigatório
+      div(ng-message="pattern") Domínio inválido. Use o formato: 'handtalk.me' ou 'meublog.blogspot.com.br'
+
+
+mixin htsiteDescription(formName, model)
+  - model = model || 'htsite'
+
+  md-input-container.md-block
+    label Descrição
+    input(type='text',
+    name="description",
+    ng-model="#{model}.description",
+    required,
+    minlength="15",
+    maxlength="200")
+    div(ng-messages='#{formName}.description.$error')
+      div(ng-message="required") Descrição  obrigatória
+      div(ng-message="minlength") Descrição mínima de 15 caracteres
+      div(ng-message="maxlength") Descrição máxima de 200 caracteres
+
+mixin htsiteCategory(formName, model)
+  - model = model || 'htsite'
+
+  md-input-container.md-block
+    label Categoria
+    md-select(name='', ng-model='htsite.category', required)
+      md-option(ng-repeat='cat in HtConfig.htsites.categories', value='{{cat}}') {{cat}}
+    div(ng-messages='#{formName}.category.$error')
+      div(ng-message="required") A categoria é obrigatória
+
+
+mixin htsitePlans(formName, model, ngif, disabled)
+  - model = model || 'htsite';  ngif = ngif || "true"; disabled = disabled || 'false';
+
+  md-input-container.md-block
+    label Plano
+    md-select(name="plan", ng-model='#{model}.plan', aria-label='Plano', required)
+      md-option(ng-repeat="(key, val) in HtConfig.htsites.plans",
+      ng-if="#{ngif}",
+      ng-disabled="#{disabled}",
+      value="{{key}}",
+      required)
+        | {{val.name}} - {{val.price | centsToReais:0}} por mês (até {{val.monthlyCredit}} créditos mensais)
+    div(ng-messages='#{formName}.plan.$error')
+      div(ng-message="required") O Plano é obrigatório
+
+
+mixin htsiteKeywords(formName, model)
+  - model = model || 'htsite'
+
+  md-chips(ng-model='#{model}.keywords',
+  md-separator-keys="[188, 186, 13]",
+  placeholder="Palavras Chave")
+  .md-error(ng-if='!#{formName}.$pristine && (#{model}.keywords.length < 3 || #{model}.keywords.length > 10)')
+    | Insira entre 3 e 10 palavras chave para seu site. Aperte "enter" após cada uma.
+
+mixin htsitePromocode(formName, model)
+  - model = model || 'htsite'
+
+  md-input-container.md-block
+    label Código Promocional (Opcional)
+    input(type='text',
+    name="promocode",
+    ng-model="#{model}.promocode")
+    .md-error(ng-if="!#{formName}.promocode.$pristine && ((#{model}.promocode && !partner) || !partner.active)") Código inválido
+
+
+mixin userDisplayName(formName, model)
+  - model = model || 'user'
+
+  md-input-container.md-block
+    label Nome
+    input(type='text',
+    name='displayName',
+    ng-model='#{model}.displayName',
+    minlength="3",
+    required)
+    div(ng-messages='#{formName}.displayName.$error')
+      div(ng-message='required') Nome obrigatório
+      div(ng-message='minlength') O nome precisa ter no mínimo 3 caracteres
+
+mixin companyName(formName, model)
+  - model = model || 'user'
+
+  md-input-container.md-block
+    label Empresa
+    input(type='text',
+    name='companyName',
+    ng-model='#{model}.company',
+    minlength="3",
+    required)
+    div(ng-messages='#{formName}.companyName.$error')
+      div(ng-message='required') Nome da empresa obrigatório
+      div(ng-message='minlength') O nome da empresa precisa ter no mínimo 3 caracteres
+
+
+mixin userPhoneNumber(formName, model)
+  - model = model || 'user'
+
+  md-input-container.md-block
+    label Telefone
+    input(name='phoneNumber',
+    ng-model='#{model}.phoneNumber',
+    ng-pattern='/^\\([0-9]{2,3}\\)[\\s]?[0-9]{7,9}$/',
+    required)
+    .hint(ng-show="#{formName}.phoneNumber.$valid || #{formName}.phoneNumber.$pristine")
+      | Formato: (##) ########
+    div(ng-messages='#{formName}.phoneNumber.$error')
+      div(ng-message='pattern') Use o formato: (##) ########
+      div(ng-message='required') Telefone obrigatório
+
+
+mixin userEmail(formName, model)
+  - model = model || 'user'
+
+  md-input-container.md-block
+    label Email
+    input(type='email',
+    name='email',
+    ng-model='#{model}.email',
+    ng-pattern='/^.+@.+\\..+$/',
+    required)
+    div(ng-messages='#{formName}.email.$error')
+      div(ng-message="pattern") Email inválido
+      div(ng-message="required") Email obrigatório
+
+mixin userPassword(formName, model)
+  - model = model || 'user'
+
+  md-input-container.md-block
+    label Senha
+    input(type='password',
+    name='password',
+    ng-model='#{model}.password',
+    minlength="6",
+    required)
+    div(ng-messages='#{formName}.password.$error')
+      div(ng-message='required') Senha obrigatória
+      div(ng-message='minlength') A senha precisa ter 6 ou mais caracteres
+
+mixin userPersona(formName, model)
+  - model = model || 'user'
+
+  md-input-container.md-block
+    label Perfil
+    md-select(ng-model='#{model}.persona', required)
+      md-option(
+      ng-repeat='(key, value) in HtConfig.personas',
+      value='{{key}}') {{value}}
+    div(ng-messages='#{formName}.persona.$error')
+      div(ng-message='required') Escolha um perfil
+
+mixin ccName(formName, model)
+  - model = model || 'paymentMethod'
+
+  md-input-container.md-block
+    md-tooltip O nome do titular como consta no cartão de crédito
+    label Titular do Cartão
+    input(type='text',
+    name='ccname',
+    ng-model='#{model}.ccname',
+    ng-pattern="/^.+\\ .+$/",
+    required)
+    div(ng-messages='#{formName}.ccname.$error')
+      div(ng-message="pattern") Digite ao menos um nome e um sobrenome
+      div(ng-message="required") O nome do proprietário do cartão é obrigatório
+
+mixin ccDescription(formName, model)
+  - model = model || 'paymentMethod'
+
+  md-input-container.md-block
+    label Descrição do Cartão
+    input(type='text',
+    name='ccdescription',
+    ng-model='#{model}.ccdescription',
+    required)
+    div(ng-messages='#{formName}.ccdescription.$error')
+      div(ng-message="required") A descrição do cartão é obrigatória
+
+mixin ccNumber(formName, model)
+  - model = model || 'paymentMethod'
+
+  md-input-container.md-block
+    label Número do Cartão
+    input(type='text',
+    name='ccnumber',
+    ng-model='#{model}.ccnumber',
+    required)
+    //minlength="14",
+
+    //val-ccnumber,
+    div(ng-messages='#{formName}.ccnumber.$error')
+      div(ng-message="required") O número do cartão é obrigatório
+      div(ng-message="minlength") O número está pequeno
+
+mixin ccExp(formName, model)
+  - model = model || 'paymentMethod'
+
+  md-input-container.md-block
+    label Validade
+    input(type='text',
+    name='ccexp',
+    ng-model='#{model}.ccexp',
+    val-ccexp,
+    required)
+    div(ng-messages='#{formName}.ccexp.$error')
+      div(ng-message="required") A data de validade é obrigatória
+      div(ng-message="ccexp") Data inválida.
+
+mixin ccCvv(formName, model)
+  - model = model || 'paymentMethod'
+
+  md-input-container.md-block
+    md-tooltip Os três algarismos no verso do cartão (perto da assinatura)
+    label CVV
+    input(type='text',
+    name='cccvv',
+    ng-model='#{model}.cccvv',
+    minlength="3",
+    required)
+    //val-cccvv="{{getCcBrand()}}",
+    div(ng-messages='#{formName}.cccvv.$error')
+      div(ng-message="required") O CVV é obrigatório
+      div(ng-message="minlength") O CVV está pequeno

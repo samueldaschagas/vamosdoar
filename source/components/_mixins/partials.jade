@@ -1,0 +1,23 @@
+mixin preloader(ngif)
+  md-progress-circular.md-accent(
+  ng-if=(ngif || false)
+  style="margin: 20px auto;",
+  md-mode="indeterminate",
+  md-diameter="30px")
+
+
+mixin toolbar(appName)
+  section(layout="row", flex)
+
+    div(flex, layout="column")
+      md-toolbar.md-whiteframe-2dp(class="#{appName == 'Desenv' ? 'md-accent md-hue-2' : ''}")
+        .md-toolbar-tools
+
+          //- Nome do s painéis
+          span.hide-xs.hide-sm Vamos Doar!
+
+          span(flex)
+
+
+      if block
+        block

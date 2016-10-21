@@ -1,0 +1,19 @@
+commit force delet
+
+O plano é, quando terminarmos, termos apenas esses arquivos e pastas dentro da pasta scss/:
+
+lib/
+partials/
+login/
+desenv/
+client/
+community/
+handtalk.scss
+
+Dentro da pasta lib devemos manter apenas os arquivos que complementam alguma biblioteca externa, como foundation, prettyprint, angular-chart
+
+Dentro da pasta partials/ vamos manter apenas os trechos parciais de elementos de todos os webapp, como mini-flexgrid e http-indicator.
+
+Na pasta de cada webapp, devemos ter arquivos separados apenas com scss específico de cada projeto.
+
+O arquivo handtalk.scss deve conter includes de tudo isso. Teremos apenas um arquivo css minificado e comum a todos os webapps.
