@@ -1,13 +1,13 @@
 script#panel(type='text/ng-template')
 
-  .white-bg( layout-fill, style="height:100%; width: 100%;", layout="column")
+  .white-bg(layout-fill, style="height:100%; width: 100%;", layout="column", layout-align="start center")
 
     md-input-container.md-block.search-content
       label Endereço
       input(ng-model='address')
       md-icon.material-icons(ng-click="getAddress()") search
 
-    md-content
+    md-content(style="height:60%; width: 60%;")
       #map
 
   md-button.md-fab.md-fab-bottom-right.md-accent(ng-click="newDonation($event)") +
@@ -37,4 +37,29 @@ script#newDonation(type='text/ng-template')
           | Cancelar
 
         md-button.md-raised.md-accent(ng-click="dialogHide('donation')")
-          | Adicionar Doação
+          | Adicionar
+
+
+script#newScheduled(type='text/ng-template')
+  md-dialog(aria-label='Agendar Coleta')
+    form(name="scheduledForm", novalidate)
+      .md-padding
+        h2.md-title(style="margin: 0;") Agendar Coleta
+
+      md-dialog-content
+        .md-dialog-content
+
+          md-input-container(flex, style="margin-bottom:-5px")
+            label Recolher em
+            md-datepicker(flex,
+            ng-model="scheduled.startAt",
+            md-min-date="today",
+            required)
+
+        md-dialog-actions(layout='row')
+          md-button(ng-click="dialogCancel()")
+            | Cancelar
+
+          md-button.md-raised.md-accent(ng-click="dialogHide('scheduled')",
+          ng-disabled="scheduledForm.$invalid")
+            | Agendar

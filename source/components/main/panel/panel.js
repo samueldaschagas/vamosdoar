@@ -1,12 +1,16 @@
 angular.module("app")
-  .controller("MainPanel.Controller", function ($scope, Auth, $state, $mdDialog, Ref) {
+  .controller("MainPanel.Controller", function ($scope, Auth, $state, $mdDialog, Ref, $compile) {
     var mapOptions = {
       zoom: 15,
       center: new google.maps.LatLng(-9.626925, -35.738214200000016),
       mapTypeId: google.maps.MapTypeId.TERRAIN
     };
 
-
+    $scope.today = moment()
+        .hours(23)
+        .minutes(59)
+        .seconds(59)
+        .toDate();
     $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
     $scope.geocoder = new google.maps.Geocoder();
 
@@ -22,6 +26,8 @@ angular.module("app")
         title: info.category
       });
       marker.content = '<div class="infoWindowContent"><strong>Doador:</strong> '+ info.name + '<br> <strong>Quantidade:</strong> '+ info.amount+' </div><button class="md-raised md-primary md-button md-ink-ripple btn-interest" ng-click="setInteresse(marker)">Tenho Interesse</button>';
+      //marker.content = $compile(htmlMarkerContent)($scope)[0].innerHTML;
+
 
       google.maps.event.addListener(marker, 'click', function(){
 
@@ -106,6 +112,25 @@ angular.module("app")
         fullscreen: false
       }).then(function (type) {
         if (type == 'donation') $scope.createDonation();
+      });
+    };
+
+    function createScheduled() {
+
+    };
+
+    $scope.newScheduled = function (marker) {
+
+      console.log(marker);
+
+      $mdDialog.show({
+        preserveScope: true,
+        scope: $scope,
+        templateUrl: 'newScheduled',
+        clickOutsideToClose: true,
+        fullscreen: false
+      }).then(function (type) {
+        if (type == 'scheduled') createScheduled();
       });
     };
 
