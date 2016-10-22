@@ -5,9 +5,10 @@ script#panel(type='text/ng-template')
     md-input-container(flex).md-block
       label Endereço
       input(ng-model='address')
+      md-icon.material-icons(ng-click="getAddress()") search
 
-
+    br
     md-content
-      //img(src="images/mapa.png")
+      #map
 
   md-button.md-fab.md-fab-bottom-right.md-accent(ng-click="") +

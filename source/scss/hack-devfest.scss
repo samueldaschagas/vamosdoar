@@ -3,3 +3,18 @@
 
 // Custom
 @import 'partials/custom';
+
+
+#map {
+  height:600px;
+  width:100%;
+}
+.infoWindowContent {
+  font-size:  14px !important;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+h2 {
+  margin-bottom:0;
+  margin-top: 0;
+}
