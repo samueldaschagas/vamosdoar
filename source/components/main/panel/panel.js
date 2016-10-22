@@ -1,10 +1,11 @@
 angular.module("app")
-  .controller("MainPanel.Controller", function ($scope, Auth, $state, Ref) {
+  .controller("MainPanel.Controller", function ($scope, Auth, $state, $mdDialog, Ref) {
     var mapOptions = {
       zoom: 15,
       center: new google.maps.LatLng(-9.626925, -35.738214200000016),
       mapTypeId: google.maps.MapTypeId.TERRAIN
     };
+
 
     $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
     $scope.geocoder = new google.maps.Geocoder();
@@ -70,5 +71,42 @@ angular.module("app")
       console.log(item);
     };
 
+    $scope.createDonation = function () {
+      var donationsRef = Ref.child("donations");
+      var donation = donationsRef.push();
+
+      $scope.geocoder.geocode( { 'address': $scope.new.address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+
+          $scope.new.lat = results[0].geometry.location.lat();
+          $scope.new.long = results[0].geometry.location.lng();
+          $scope.map.setCenter(results[0].geometry.location);
+
+          $scope.new.uid = Auth.currentUser.email;
+          $scope.new.name = Auth.currentUser.email;
+
+
+          createMarker($scope.new);
+
+          donation.set($scope.new);
+        }
+      });
+
+
+
+    };
+
+    $scope.newDonation = function () {
+
+      $mdDialog.show({
+        preserveScope: true,
+        scope: $scope,
+        templateUrl: 'newDonation',
+        clickOutsideToClose: true,
+        fullscreen: false
+      }).then(function (type) {
+        if (type == 'donation') $scope.createDonation();
+      });
+    };
 
   });
