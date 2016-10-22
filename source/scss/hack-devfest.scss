@@ -4,16 +4,17 @@
 // Custom
 @import 'partials/custom';
 
-
 #map {
-  height:600px;
+  height:555px;
   width:100%;
 }
+
 .infoWindowContent {
   font-size:  14px !important;
   border-top: 1px solid #ccc;
   padding-top: 10px;
 }
+
 h2 {
   margin-bottom:0;
   margin-top: 0;
@@ -21,12 +22,48 @@ h2 {
 
 .search-content {
 	width: 65%;
-    margin: 45px auto 30px;
+    margin: 45px auto 15px;
 	label {
 		font-size: 18px;
 	}
+
 	.material-icons {
 		font-size: 28px;
 		cursor: pointer;
+	}
+}
+
+.box-marker {
+	font: {
+		size: 16px;
+		weight: 900;
+	} 
+	text-transform: uppercase;
+	padding: 10px 10px 12px 0;
+
+	.material-icons {
+		position: relative;
+		top: 5px;
+		left: -2px;
+	}
+	.icon-restaurant {
+		color: #f39c12;
+	}
+	.icon-child_care {
+		color: #3498db;
+	}
+	.icon-person {
+		color: #e74c3c;
+	}
+	.icon-beenhere {
+		color: #2ecc71;
+	}
+}
+
+.md-button.md-fab.md-fab-bottom-right {
+	right: 50px;
+
+	> span {
+		font-size: 20px;
 	}
 }

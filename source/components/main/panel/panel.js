@@ -23,7 +23,19 @@ angular.module("app")
       marker.content = '<div class="infoWindowContent">Doador: '+ info.name + '<br> Quantidade: '+ info.amount+' </div><div><button ng-click="setInteresse(marker)">Interesse</button></div>';
 
       google.maps.event.addListener(marker, 'click', function(){
-        infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+        console.log(marker.title);
+
+        if(marker.title == "Alimentos"){
+            marker.icon = "restaurant";
+        } else if(marker.title == "Brinquedos") {
+            marker.icon = "child_care";
+        } else if(marker.title == "Roupas") {
+            marker.icon = "person";
+        } else {
+            marker.icon = "beenhere";
+        }
+            
+        infoWindow.setContent('<h2 class="box-marker"><i class="material-icons icon-' + marker.icon + '">' + marker.icon + '</i> ' + marker.title + '</h2>' + marker.content);
         infoWindow.open($scope.map, marker);
       });
 
