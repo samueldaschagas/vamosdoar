@@ -20,10 +20,9 @@ angular.module("app")
         position: new google.maps.LatLng(info.lat, info.long),
         title: info.category
       });
-      marker.content = '<div class="infoWindowContent">Doador: '+ info.name + '<br> Quantidade: '+ info.amount+' </div><div><button ng-click="setInteresse(marker)">Interesse</button></div>';
+      marker.content = '<div class="infoWindowContent"><strong>Doador:</strong> '+ info.name + '<br> <strong>Quantidade:</strong> '+ info.amount+' </div><button class="md-raised md-primary md-button md-ink-ripple btn-interest" ng-click="setInteresse(marker)">Tenho Interesse</button>';
 
       google.maps.event.addListener(marker, 'click', function(){
-        console.log(marker.title);
 
         if(marker.title == "Alimentos"){
             marker.icon = "restaurant";

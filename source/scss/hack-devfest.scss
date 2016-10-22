@@ -10,9 +10,9 @@
 }
 
 .infoWindowContent {
-  font-size:  14px !important;
-  border-top: 1px solid #ccc;
-  padding-top: 10px;
+    font-size: 14px !important;
+    border-top: 1px solid #ccc;
+    padding-top: 18px;
 }
 
 h2 {
@@ -40,6 +40,7 @@ h2 {
 	} 
 	text-transform: uppercase;
 	padding: 10px 10px 12px 0;
+	min-width: 180px;
 
 	.material-icons {
 		position: relative;
@@ -65,5 +66,22 @@ h2 {
 
 	> span {
 		font-size: 20px;
+	}
+}
+
+.md-button.btn-interest {
+    font: {
+    	weight: 400;
+    	size: 13px;
+   	} 
+   	width: 100%;
+	background-color: #27ae60 !important;
+    color: #fff !important;
+    padding: 0px 16px;
+    margin: 14px 0px 8px;
+
+	.material-icons {
+		position: relative;
+		top: 6px;
 	}
 }
