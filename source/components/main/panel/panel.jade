@@ -1,13 +1,12 @@
 script#panel(type='text/ng-template')
 
-  .white-bg(flex, layout-fill, style="height:100%; width: 100%;", layout="column")
+  .white-bg( layout-fill, style="height:100%; width: 100%;", layout="column")
 
-    md-input-container(flex).md-block
+    md-input-container.md-block.search-content
       label Endereço
       input(ng-model='address')
       md-icon.material-icons(ng-click="getAddress()") search
 
-    br
     md-content
       #map
 
