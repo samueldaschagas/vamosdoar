@@ -24,12 +24,12 @@ script#account(type='text/ng-template')
 
           span(flex)
 
-          md-button.md-primary.md-raised(aria-label="Criar Conta",
+          md-button.md-primary.md-register.md-raised(aria-label="Criar Conta",
           ng-disabled="httpPending()",
           ng-click="$state.go('account', { state: 'signup'})",
           ng-if="$stateParams.state === 'login'")
             | Cadastrar
 
           md-button.md-raised.md-accent(type="submit", aria-label="Enviar",
-          ng-disabled="httpPending() || accountForm.$invalid")
+          ng-disabled="httpPending() || accountForm.$invalid", ng-class="{'is-enabled': httpPending() || !accountForm.$invalid}")
             | {{({ signup: 'Cadastrar', login: 'Entrar'})[$stateParams.state]}}

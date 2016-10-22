@@ -4,6 +4,11 @@
 // Custom
 @import 'partials/custom';
 
+.md-toolbar-tools {
+	background-color: rgb(100, 154, 193);
+	color: #fff;
+}
+
 #map {
   height:555px;
   width:100%;
@@ -85,3 +90,17 @@ h2 {
 		top: 6px;
 	}
 }
+
+.btn-register, .btn-login {
+	font-size: 13px;
+}
+
+.md-register {
+	color: #fff !important;
+}
+
+.md-fab, .is-enabled {
+	background-color: #e67e22 !important;
+}
+
+
