@@ -20,7 +20,7 @@ angular.module("app")
         position: new google.maps.LatLng(info.lat, info.long),
         title: info.category
       });
-      marker.content = '<div class="infoWindowContent">' + info.name + '</div>';
+      marker.content = '<div class="infoWindowContent">Doador: '+ info.name + '<br> Quantidade: '+ info.amount+' </div><div><button ng-click="setInteresse(marker)">Interesse</button></div>';
 
       google.maps.event.addListener(marker, 'click', function(){
         infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
@@ -35,7 +35,9 @@ angular.module("app")
 
     donationsRef.on("child_added", function (snap) {
       console.log("snap: ", snap.val());
-      createMarker(snap.val());
+      var donation = snap.val();
+      donation.key = snap.key;
+      createMarker(donation);
     });
 
     $scope.openInfoWindow = function(e, selectedMarker){
@@ -51,7 +53,11 @@ angular.module("app")
           $scope.map.setCenter(results[0].geometry.location);
         } else alert('Geocode was not successful for the following reason: ' + status);
       });
-    }
+    };
+
+    $scope.getInteresse = function (item) {
+      console.log(item);
+    };
 
 
   });
