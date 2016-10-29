@@ -1,20 +1,20 @@
-angular.module('app')
+angular.module("app")
 
   .config(function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/account');
+    $urlRouterProvider.otherwise("/account");
 
     $stateProvider
 
       .state("account", {
-        url: '/account?state',
+        url: "/account?state",
         controller: "MainAccount.Controller",
-        templateUrl: 'account'
+        templateUrl: "account"
       })
 
       .state("panel", {
-        url: '/panel',
+        url: "/panel",
         controller: "MainPanel.Controller",
-        templateUrl: 'panel'
+        templateUrl: "panel"
       });
   });

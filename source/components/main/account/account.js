@@ -1,20 +1,21 @@
-angular.module('app')
-  .controller('MainAccount.Controller', function ($scope, $state, Auth, $q, Ref, $stateParams) {
+angular.module("app")
+  .controller("MainAccount.Controller", function ($scope, $state, Auth, $q, Ref, $stateParams) {
 
     if (Auth.currentUser) return $state.go("panel");
 
-    if (!$stateParams.state) $state.go("account", _.defaults({ state:'login' }, $stateParams));
+    if (!$stateParams.state) $state.go("account", _.defaults({ state:"login" }, $stateParams));
 
+    //ToDo - Mudar o nome Instituicao para Institution
     $scope.user = { isInstituicao: false};
 
     $scope.submit = function () {
 
-      if ($stateParams.state === 'login') {
+      if ($stateParams.state === "login") {
         return login()
           .then(redirect, showError);
       }
 
-      if ($stateParams.state === 'signup') {
+      if ($stateParams.state === "signup") {
         return createAuth()
           .then(login)
           .then(createUser)
@@ -38,14 +39,14 @@ angular.module('app')
 
     function createUser(newAuth) {
 
-      var profileRef = Ref.child('users/'+newAuth.uid);
+      var profileRef = Ref.child("users").child(newAuth.uid);
 
       return getUser()
         .then(createNewUser);
 
       function getUser () {
         return $q(function(resolve, reject) {
-          profileRef.once('value', function (snap) {
+          profileRef.once("value", function (snap) {
             if (snap.exists() && snap.val())
               return resolve(snap.val());
             return resolve(false)
@@ -64,6 +65,7 @@ angular.module('app')
 
           profileRef.update(profileInfo, function (err) {
             if(err) return reject(err);
+            newAuth.updateProfile({ displayName: profileInfo.name});
             resolve(newAuth);
           });
         });
@@ -72,7 +74,7 @@ angular.module('app')
     }
 
     function redirect () {
-      $state.go('panel');
+      $state.go("panel");
     }
 
     function showError(err) {

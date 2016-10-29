@@ -1,5 +1,5 @@
 angular.module("app")
-  .controller("MainPanel.Controller", function ($scope, Auth, $state, $mdDialog, Ref, $compile) {
+  .controller("MainPanel.Controller", function ($scope, Auth, $state, $mdDialog, Ref) {
     var mapOptions = {
       zoom: 15,
       center: new google.maps.LatLng(-9.626925, -35.738214200000016),
@@ -11,7 +11,7 @@ angular.module("app")
         .minutes(59)
         .seconds(59)
         .toDate();
-    $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
     $scope.geocoder = new google.maps.Geocoder();
 
     $scope.markers = [];
@@ -25,11 +25,11 @@ angular.module("app")
         position: new google.maps.LatLng(info.lat, info.long),
         title: info.category
       });
-      marker.content = '<div class="infoWindowContent"><strong>Doador:</strong> '+ info.name + '<br> <strong>Quantidade:</strong> '+ info.amount+' </div><button class="md-raised md-primary md-button md-ink-ripple btn-interest" ng-click="setInteresse(marker)">Tenho Interesse</button>';
+      marker.content = "<div class='infoWindowContent'><strong>Doador:</strong> "+ info.name + "<br> <strong>Quantidade:</strong> "+ info.amount+" </div><button class='md-raised md-primary md-button md-ink-ripple btn-interest' ng-click='setInteresse(marker)'>Tenho Interesse</button>";
+      // Passando scope para o marker
       //marker.content = $compile(htmlMarkerContent)($scope)[0].innerHTML;
 
-
-      google.maps.event.addListener(marker, 'click', function(){
+      google.maps.event.addListener(marker, "click", function(){
 
         if(marker.title == "Alimentos"){
             marker.icon = "restaurant";
@@ -41,7 +41,7 @@ angular.module("app")
             marker.icon = "beenhere";
         }
             
-        infoWindow.setContent('<h2 class="box-marker"><i class="material-icons icon-' + marker.icon + '">' + marker.icon + '</i> ' + marker.title + '</h2>' + marker.content);
+        infoWindow.setContent("<h2 class='box-marker'><i class='material-icons icon-" + marker.icon + "'>" + marker.icon + "</i> " + marker.title + "</h2>" + marker.content);
         infoWindow.open($scope.map, marker);
       });
 
@@ -52,7 +52,6 @@ angular.module("app")
     var donationsRef = Ref.child("donations");
 
     donationsRef.on("child_added", function (snap) {
-      console.log("snap: ", snap.val());
       var donation = snap.val();
       donation.key = snap.key;
       createMarker(donation);
@@ -60,16 +59,14 @@ angular.module("app")
 
     $scope.openInfoWindow = function(e, selectedMarker){
       e.preventDefault();
-      google.maps.event.trigger(selectedMarker, 'click');
+      google.maps.event.trigger(selectedMarker, "click");
     };
 
      $scope.getAddress = function () {
-      $scope.geocoder.geocode( { 'address': $scope.address}, function(results, status) {
+      $scope.geocoder.geocode( { "address": $scope.address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-          console.log("Latitude: ", results[0].geometry.location.lat());
-          console.log("Logitude: ", results[0].geometry.location.lng());
           $scope.map.setCenter(results[0].geometry.location);
-        } else alert('Geocode was not successful for the following reason: ' + status);
+        } else alert("Geocode was not successful for the following reason: " + status);
       });
     };
 
@@ -81,7 +78,7 @@ angular.module("app")
       var donationsRef = Ref.child("donations");
       var donation = donationsRef.push();
 
-      $scope.geocoder.geocode( { 'address': $scope.new.address}, function(results, status) {
+      $scope.geocoder.geocode( { "address": $scope.new.address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
 
           $scope.new.lat = results[0].geometry.location.lat();
@@ -89,17 +86,12 @@ angular.module("app")
           $scope.map.setCenter(results[0].geometry.location);
 
           $scope.new.uid = Auth.currentUser.email;
-          $scope.new.name = Auth.currentUser.email;
-
+          $scope.new.name = Auth.currentUser.displayName;
 
           createMarker($scope.new);
-
           donation.set($scope.new);
         }
       });
-
-
-
     };
 
     $scope.newDonation = function () {
@@ -107,17 +99,17 @@ angular.module("app")
       $mdDialog.show({
         preserveScope: true,
         scope: $scope,
-        templateUrl: 'newDonation',
+        templateUrl: "newDonation",
         clickOutsideToClose: true,
         fullscreen: false
       }).then(function (type) {
-        if (type == 'donation') $scope.createDonation();
+        if (type == "donation") $scope.createDonation();
       });
     };
 
     function createScheduled() {
 
-    };
+    }
 
     $scope.newScheduled = function (marker) {
 
@@ -126,11 +118,11 @@ angular.module("app")
       $mdDialog.show({
         preserveScope: true,
         scope: $scope,
-        templateUrl: 'newScheduled',
+        templateUrl: "newScheduled",
         clickOutsideToClose: true,
         fullscreen: false
       }).then(function (type) {
-        if (type == 'scheduled') createScheduled();
+        if (type == "scheduled") createScheduled();
       });
     };
 
