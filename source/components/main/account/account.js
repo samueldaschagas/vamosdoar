@@ -65,6 +65,7 @@ angular.module("app")
 
           profileRef.update(profileInfo, function (err) {
             if(err) return reject(err);
+            newAuth.updateProfile({ displayName: profileInfo.name});
             resolve(newAuth);
           });
         });

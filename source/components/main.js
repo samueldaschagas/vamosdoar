@@ -1,5 +1,3 @@
-//= include ../../bower_components/md5/src/md5.js
-
 // App
 //= include main/app.js
 

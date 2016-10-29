@@ -29,7 +29,6 @@ angular.module("app")
       // Passando scope para o marker
       //marker.content = $compile(htmlMarkerContent)($scope)[0].innerHTML;
 
-
       google.maps.event.addListener(marker, "click", function(){
 
         if(marker.title == "Alimentos"){
@@ -53,7 +52,6 @@ angular.module("app")
     var donationsRef = Ref.child("donations");
 
     donationsRef.on("child_added", function (snap) {
-      console.log("snap: ", snap.val());
       var donation = snap.val();
       donation.key = snap.key;
       createMarker(donation);
@@ -67,8 +65,6 @@ angular.module("app")
      $scope.getAddress = function () {
       $scope.geocoder.geocode( { "address": $scope.address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-          console.log("Latitude: ", results[0].geometry.location.lat());
-          console.log("Logitude: ", results[0].geometry.location.lng());
           $scope.map.setCenter(results[0].geometry.location);
         } else alert("Geocode was not successful for the following reason: " + status);
       });
@@ -90,17 +86,12 @@ angular.module("app")
           $scope.map.setCenter(results[0].geometry.location);
 
           $scope.new.uid = Auth.currentUser.email;
-          $scope.new.name = Auth.currentUser.email;
-
+          $scope.new.name = Auth.currentUser.displayName;
 
           createMarker($scope.new);
-
           donation.set($scope.new);
         }
       });
-
-
-
     };
 
     $scope.newDonation = function () {
@@ -118,7 +109,7 @@ angular.module("app")
 
     function createScheduled() {
 
-    };
+    }
 
     $scope.newScheduled = function (marker) {
 
