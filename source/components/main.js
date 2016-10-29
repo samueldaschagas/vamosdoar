@@ -9,7 +9,6 @@
 //= include _config/firebase.js
 //= include _config/utils.js
 //= include _config/controllers.js
-//= include _config/cities.js
 
 // Config
 //= include main/routes.js

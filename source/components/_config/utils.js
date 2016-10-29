@@ -1,4 +1,4 @@
-angular.module('app')
+angular.module("app")
   // Adicionar propriedades no rootScope
   .run(function ($rootScope, $http, $stateParams, $state, $mdDialog, Ref, $timeout, $window, $mdMedia) {
 
@@ -11,5 +11,5 @@ angular.module('app')
     $rootScope.$stateParams = $stateParams;
     $rootScope.$mdMedia = $mdMedia;
     $rootScope.$state = $state;
-  })
+  });
 
