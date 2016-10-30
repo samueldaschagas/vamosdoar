@@ -85,10 +85,9 @@ angular.module("app")
           $scope.new.long = results[0].geometry.location.lng();
           $scope.map.setCenter(results[0].geometry.location);
 
-          $scope.new.uid = Auth.currentUser.email;
+          $scope.new.uid = Auth.currentUser.uid;
           $scope.new.name = Auth.currentUser.displayName;
 
-          createMarker($scope.new);
           donation.set($scope.new);
         }
       });

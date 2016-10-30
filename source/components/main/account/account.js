@@ -1,12 +1,11 @@
 angular.module("app")
-  .controller("MainAccount.Controller", function ($scope, $state, Auth, $q, Ref, $stateParams) {
+  .controller("MainAccount.Controller", function ($scope, $state, Auth, $q, Ref, $stateParams, $mdToast) {
 
     if (Auth.currentUser) return $state.go("panel");
 
     if (!$stateParams.state) $state.go("account", _.defaults({ state:"login" }, $stateParams));
 
-    //ToDo - Mudar o nome Instituicao para Institution
-    $scope.user = { isInstitution: false};
+    $scope.user = { isInstitution: false };
 
     $scope.submit = function () {
 
@@ -78,6 +77,7 @@ angular.module("app")
     }
 
     function showError(err) {
+      $mdToast.show($mdToast.simple().textContent(err.message));
       console.error(err);
     }
 
