@@ -6,7 +6,7 @@ angular.module("app")
     if (!$stateParams.state) $state.go("account", _.defaults({ state:"login" }, $stateParams));
 
     //ToDo - Mudar o nome Instituicao para Institution
-    $scope.user = { isInstituicao: false};
+    $scope.user = { isInstitution: false};
 
     $scope.submit = function () {
 
@@ -60,7 +60,7 @@ angular.module("app")
 
           var profileInfo = {};
           profileInfo.email = $scope.user.email;
-          profileInfo.isInstituicao = $scope.user.isInstituicao;
+          profileInfo.isInstitution = $scope.user.isInstitution;
           profileInfo.name = $scope.user.name;
 
           profileRef.update(profileInfo, function (err) {
