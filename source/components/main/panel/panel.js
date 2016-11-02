@@ -1,5 +1,5 @@
 angular.module("app")
-  .controller("MainPanel.Controller", function ($scope, Auth, $state, $mdDialog, Ref) {
+  .controller("MainPanel.Controller", function ($scope, Auth, $state, $mdDialog, $mdToast, $http, Ref) {
     var mapOptions = {
       zoom: 15,
       center: new google.maps.LatLng(-9.626925, -35.738214200000016),
@@ -15,6 +15,7 @@ angular.module("app")
     $scope.geocoder = new google.maps.Geocoder();
 
     $scope.markers = [];
+    $scope.categories = ['Alimentos', 'Brinquedos', 'Roupas', 'Outras'];
 
     var infoWindow = new google.maps.InfoWindow();
 
@@ -72,6 +73,30 @@ angular.module("app")
 
     $scope.getInteresse = function (item) {
       console.log(item);
+    };
+
+    $scope.getAddressByCEP = function() {
+        var cep = $scope.new.cep? $scope.new.cep.replace(/-|\s/g,"") : undefined;
+
+        if(cep) {
+            if(cep.length > 7){
+                $http.get('https://viacep.com.br/ws/' + $scope.new.cep + '/json/')
+                  .success(function(response){
+                      if(response.logradouro)
+                        $scope.new.address = response.logradouro;
+                      if(response.localidade)
+                        $scope.new.address += (", " + response.localidade);
+                      if(response.uf)
+                        $scope.new.address += (", " + response.uf);                
+                  })
+                  .error(function(){
+                      $mdToast.show($mdToast.simple().textContent('CEP não encontrado'));
+                      $scope.new.address = "";
+                  });
+            }
+        } else {
+            $scope.new.address = "";
+        }
     };
 
     $scope.createDonation = function () {

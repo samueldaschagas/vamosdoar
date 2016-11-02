@@ -1,5 +1,6 @@
 angular.module("app", [
   "ui.router",
   "ngMaterial",
-  "ngMessages"
+  "ngMessages",
+  "ui.utils.masks"
 ]);

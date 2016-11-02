@@ -20,23 +20,31 @@ script#newDonation(type='text/ng-template')
 
       md-dialog-content.md-dialog-content
         md-input-container.md-block
+          label CEP
+          input(ng-model='new.cep', ng-change="getAddressByCEP()", ui-br-cep-mask, type='text')
+          span.ref
+        md-input-container.md-block
           label Endereço
-          input(ng-model='new.address')
+          input(ng-model='new.address', required)
         md-input-container.md-block
-          br
           label Categoria
-          input(ng-model='new.category')
+          md-select(ng-model='new.category', required)
+            md-option(ng-repeat='category in categories', ng-value='category')
+              | {{category}}
+        br
         md-input-container.md-block
-          br
           label Quantidade
-          input(ng-model='new.amount')
+          input(ng-model='new.amount', type='number', min="1", required)
 
       md-dialog-actions(layout='row')
+
+        md-button(ng-click="new = {}")
+          | Limpar tudo
 
         md-button(ng-click="dialogCancel()")
           | Cancelar
 
-        md-button.md-raised.md-accent(ng-click="dialogHide('donation')")
+        md-button.md-raised.md-accent(ng-click="dialogHide('donation')", ng-disabled="newDonationForm.$invalid")
           | Adicionar
 
 
