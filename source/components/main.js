@@ -10,6 +10,7 @@
 
 // Config
 //= include main/routes.js
+//= include main/home/home.js
 //= include main/account/account.js
 //= include main/panel/panel.js
 

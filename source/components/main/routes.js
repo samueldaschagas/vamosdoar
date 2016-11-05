@@ -1,10 +1,18 @@
 angular.module("app")
 
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, PERMISSION) {
 
-    $urlRouterProvider.otherwise("/account");
+    $urlRouterProvider.otherwise("/home");
 
     $stateProvider
+      .state("home", {
+        url: "/home",
+        controller: "Home.Controller",
+        templateUrl: "home",
+        resolve: {
+          currentUserRole: PERMISSION.requireRole()
+        }
+      })
 
       .state("account", {
         url: "/account?state",

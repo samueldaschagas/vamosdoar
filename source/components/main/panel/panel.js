@@ -1,5 +1,6 @@
 angular.module("app")
   .controller("MainPanel.Controller", function ($scope, Auth, $state, $mdDialog, $mdToast, $http, Ref) {
+
     var mapOptions = {
       zoom: 15,
       center: new google.maps.LatLng(-9.626925, -35.738214200000016),
@@ -87,7 +88,7 @@ angular.module("app")
                       if(response.localidade)
                         $scope.new.address += (", " + response.localidade);
                       if(response.uf)
-                        $scope.new.address += (", " + response.uf);                
+                        $scope.new.address += (", " + response.uf);
                   })
                   .error(function(){
                       $mdToast.show($mdToast.simple().textContent('CEP não encontrado'));
