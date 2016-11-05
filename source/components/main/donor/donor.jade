@@ -1,0 +1,11 @@
+script#donor(type="text/ng-template")
+  .white-bg(layout-fill, style="height:100%; width:100%;", layout="column", layout-align="start center")
+
+    md-input-container.md-block.search-content
+      label Endereço
+      input(ng-model="address")
+      md-icon.material-icons(ng-click="getAddress()") search
+
+    md-content(style="height:60%; width: 60%")
+     #map
+  md-button.md-fab.md-fab-bottom-right.md-accent(ng-click="newDonation($event)") +

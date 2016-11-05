@@ -5,12 +5,11 @@ angular.module("app")
       return $state.go("account", { state: "login" });
 
     if (currentUserRole == "donor")
-      return $state.go("panel");
+      return $state.go("donor");
 
     if (currentUserRole == "institution")
       return $state.go("panel");
 
-    return $window.location.href = "/client";
-
+    return $window.location.href = "/account";
 
   });

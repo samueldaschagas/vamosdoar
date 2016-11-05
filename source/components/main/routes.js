@@ -24,5 +24,11 @@ angular.module("app")
         url: "/panel",
         controller: "MainPanel.Controller",
         templateUrl: "panel"
+      })
+
+      .state("donor", {
+          url: "/donor",
+          controller: "Donor.Controller",
+          templateUrl: "donor"
       });
   });

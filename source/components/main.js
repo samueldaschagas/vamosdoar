@@ -13,4 +13,5 @@
 //= include main/home/home.js
 //= include main/account/account.js
 //= include main/panel/panel.js
+//= include main/donor/donor.js
 
