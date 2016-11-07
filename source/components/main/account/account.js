@@ -18,6 +18,7 @@ angular.module("app")
         return createAuth()
           .then(login)
           .then(createUser)
+          .then(setRole)
           .then(redirect, showError);
       }
     };
@@ -69,6 +70,21 @@ angular.module("app")
           });
         });
       }
+
+    }
+
+    function setRole (newAuth) {
+      return $q(function (resolve, reject){
+
+        var role = $scope.user.isInstitution ? "institution" : "donor";
+
+        var roleRef = Ref.child("roles");
+
+        roleRef.child(newAuth.uid).set(role, function() {
+          resolve(newAuth);
+        });
+
+      });
 
     }
 

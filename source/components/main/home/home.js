@@ -10,6 +10,6 @@ angular.module("app")
     if (currentUserRole == "institution")
       return $state.go("panel");
 
-    return $window.location.href = "/account";
+    return $state.go("account", { state: "login" });
 
   });
