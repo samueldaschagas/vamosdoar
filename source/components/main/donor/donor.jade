@@ -1,11 +1,56 @@
 script#donor(type="text/ng-template")
-  .white-bg(layout-fill, style="height:100%; width:100%;", layout="column", layout-align="start center")
+	.white-bg(layout-fill, style="height:100%; width:100%;", layout="column", layout-align="start center")
 
-    md-input-container.md-block.search-content
-      label Endereço
-      input(ng-model="address")
-      md-icon.material-icons(ng-click="getAddress()") search
+		.md-padding(layout="row", layout-wrap="")
+			md-card(style="width: 350px;", ng-repeat="(key, donation) in donations")
+				md-card-content
+					h2 {{donation.category}}
+					h3 {{donation.address}}
+					h5 {{donation.amount}}
 
-    md-content(style="height:60%; width: 60%")
-     #map
-  md-button.md-fab.md-fab-bottom-right.md-accent(ng-click="newDonation($event)") +
+					p
+						| Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+				.md-actions(layout='row', layout-align='end center')
+					md-button(ng-click="editDonation(key)") Editar
+					md-button Excluir
+
+	md-button.md-fab.md-fab-bottom-right.md-accent(ng-click="addDonation($event)") +
+
+
+script#donationModal(type='text/ng-template')
+	md-dialog(aria-label='Modal de Doação', style="width: 600px; max-width: 100%;")
+		form(name="donationForm", novalidate)
+			.md-padding
+				h2.md-title(style="margin: 0;", ng-if="!isEdit") Nova Doação
+				h2.md-title(style="margin: 0;", ng-if="isEdit") Editar Doação
+
+			md-dialog-content.md-dialog-content
+				md-input-container.md-block
+					label CEP
+					input(ng-model='new.cep', ng-change="getAddressByCEP()", ui-br-cep-mask, type='text')
+					span.ref
+				md-input-container.md-block
+					label Endereço
+					input(ng-model='new.address', required)
+				md-input-container.md-block
+					label Categoria
+					md-select(ng-model='new.category', required)
+						md-option(ng-repeat='category in categories', ng-value='category')
+							| {{category}}
+				br
+				md-input-container.md-block
+					label Quantidade
+					input(ng-model='new.amount', type='number', min="1", required)
+
+			md-dialog-actions(layout='row')
+
+				md-button(ng-click="new = {}")
+					| Limpar tudo
+
+				md-button(ng-click="dialogCancel()")
+					| Cancelar
+
+				md-button.md-raised.md-accent(ng-click="dialogHide('add')", ng-disabled="donationForm.$invalid", ng-if="!isEdit")
+					| Adicionar
+				md-button.md-raised.md-accent(ng-click="dialogHide('edit')", ng-disabled="donationForm.$invalid", ng-if="isEdit")
+					| Atualizar

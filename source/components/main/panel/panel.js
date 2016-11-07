@@ -64,6 +64,7 @@ angular.module("app")
       google.maps.event.trigger(selectedMarker, "click");
     };
 
+     // ToDo - Criar factory para busca de endereço
      $scope.getAddress = function () {
       $scope.geocoder.geocode( { "address": $scope.address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
@@ -77,7 +78,7 @@ angular.module("app")
     };
 
     $scope.getAddressByCEP = function() {
-        var cep = $scope.new.cep? $scope.new.cep.replace(/-|\s/g,"") : undefined;
+        var cep = $scope.new.cep ? $scope.new.cep.replace(/-|\s/g,"") : undefined;
 
         if(cep) {
             if(cep.length > 7){
