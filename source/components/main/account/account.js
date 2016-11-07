@@ -1,7 +1,7 @@
 angular.module("app")
   .controller("MainAccount.Controller", function ($scope, $state, Auth, $q, Ref, $stateParams, $mdToast) {
 
-    if (Auth.currentUser) return $state.go("panel");
+    if (Auth.currentUser) return $state.go("home");
 
     if (!$stateParams.state) $state.go("account", _.defaults({ state:"login" }, $stateParams));
 
@@ -73,7 +73,7 @@ angular.module("app")
     }
 
     function redirect () {
-      $state.go("panel");
+      $state.go("home");
     }
 
     function showError(err) {
