@@ -21,20 +21,14 @@ angular.module("app")
       })
 
       .state("panel", {
-        url: "/panel",
+        url: "/instituicao",
         controller: "MainPanel.Controller",
-        templateUrl: "panel",
-        resolve: {
-          noAuth: PERMISSION.requireNoAuth
-        }
+        templateUrl: "panel"
       })
 
       .state("donor", {
-          url: "/donor",
+          url: "/doador",
           controller: "Donor.Controller",
-          templateUrl: "donor",
-          resolve: {
-            noAuth: PERMISSION.requireNoAuth
-          }
+          templateUrl: "donor"
       });
   });
