@@ -23,12 +23,18 @@ angular.module("app")
       .state("panel", {
         url: "/panel",
         controller: "MainPanel.Controller",
-        templateUrl: "panel"
+        templateUrl: "panel",
+        resolve: {
+          noAuth: PERMISSION.requireNoAuth
+        }
       })
 
       .state("donor", {
           url: "/donor",
           controller: "Donor.Controller",
-          templateUrl: "donor"
+          templateUrl: "donor",
+          resolve: {
+            noAuth: PERMISSION.requireNoAuth
+          }
       });
   });

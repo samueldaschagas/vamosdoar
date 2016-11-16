@@ -77,6 +77,14 @@ angular.module("app")
         return PermissionUtils.requireAuth()
           .then(PermissionUtils.getRole);
       }];
-    }
+    },
+    requireNoAuth: ['PermissionUtils', '$q', function (PermissionUtils, $q) {
+      return $q(function (resolve, reject) {
+        PermissionUtils.requireAuth()
+          .then(function () {
+            return reject('USER_IS_AUTHENTICATED');
+          }, resolve);
+      });
+    }]
   })
 ;

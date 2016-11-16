@@ -15,6 +15,17 @@ angular.module("app")
 
     $scope.donations = {};
 
+    // Evento para identificar o usuário atual
+    Auth.onAuthStateChanged(function(user) {
+      if (user) {
+        $timeout($scope.getDonations(user.uid));
+      } else {
+        //ToDo - Pensar o que fazer aqui (melhor opção redirecionar para o login)
+        console.log("Não autorizado");
+        $timeout($state.go("account", {state: "login"}));
+      }
+    });
+
     /**
      * Consulta todas as doações do usuário
      * @param uid
@@ -32,15 +43,7 @@ angular.module("app")
       }
     };
 
-    // Evento para identificar o usuário atual
-    Auth.onAuthStateChanged(function(user) {
-      if (user) {
-        $timeout($scope.getDonations(user.uid));
-      } else {
-        //ToDo - Pensar o que fazer aqui (melhor opção redirecionar para o login)
-        console.log("Not working!");
-      }
-    });
+
 
     /**
      * Atualiza doção
