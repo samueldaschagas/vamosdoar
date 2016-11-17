@@ -17,6 +17,16 @@ angular.module("app")
 
     $scope.states = ["AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RO", "RS", "RR", "SC", "SE", "SP", "TO"];
 
+    // Evento para identificar o usuário atual
+    Auth.onAuthStateChanged(function(user) {
+      if (user) {
+        $timeout($scope.getDonations(user.uid));
+      } else {
+        //ToDo - Pensar o que fazer aqui (melhor opção redirecionar para o login)
+        console.log("Não autorizado");
+        $timeout($state.go("account", {state: "login"}));
+      }
+    });
 
     /**
      * Consulta todas as doações do usuário
@@ -35,15 +45,7 @@ angular.module("app")
       }
     };
 
-    // Evento para identificar o usuário atual
-    Auth.onAuthStateChanged(function(user) {
-      if (user) {
-        $timeout($scope.getDonations(user.uid));
-      } else {
-        //ToDo - Pensar o que fazer aqui (melhor opção redirecionar para o login)
-        console.log("Not working!");
-      }
-    });
+
 
     /**
      * Atualiza doção

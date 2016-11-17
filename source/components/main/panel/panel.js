@@ -1,5 +1,5 @@
 angular.module("app")
-  .controller("MainPanel.Controller", function ($scope, Auth, $state, $mdDialog, $mdToast, $http, Ref) {
+  .controller("MainPanel.Controller", function ($scope, Auth, $state, $mdDialog, $mdToast, $http, Ref, $timeout) {
 
     var mapOptions = {
       zoom: 15,
@@ -53,11 +53,24 @@ angular.module("app")
 
     var donationsRef = Ref.child("donations");
 
-    donationsRef.on("child_added", function (snap) {
-      var donation = snap.val();
-      donation.key = snap.key;
-      createMarker(donation);
+    // Evento para identificar o usuário atual
+    Auth.onAuthStateChanged(function(user) {
+      if (user) {
+        $timeout(function () {
+          donationsRef.on("child_added", function (snap) {
+            var donation = snap.val();
+            donation.key = snap.key;
+            createMarker(donation);
+          });
+        });
+      } else {
+        //ToDo - Pensar o que fazer aqui (melhor opção redirecionar para o login)
+        console.log("Não autorizado");
+        $timeout($state.go("account", {state: "login"}));
+      }
     });
+
+
 
     $scope.openInfoWindow = function(e, selectedMarker){
       e.preventDefault();
