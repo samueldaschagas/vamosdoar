@@ -18,29 +18,55 @@ script#donor(type="text/ng-template")
 
 
 script#donationModal(type='text/ng-template')
-	md-dialog(aria-label='Modal de Doação', style="width: 600px; max-width: 100%;")
+	md-dialog(aria-label='Modal de Doação', style="width: 600px; max-width: 100%;", layout-padding='')
 		form(name="donationForm", novalidate)
 			.md-padding
 				h2.md-title(style="margin: 0;", ng-if="!isEdit") Nova Doação
 				h2.md-title(style="margin: 0;", ng-if="isEdit") Editar Doação
+	
+			md-input-container.md-block
+				label CEP
+				input(ng-model='new.cep', ng-change="getAddressByCEP()", ui-br-cep-mask, type='text')
+				span.ref
 
-			md-dialog-content.md-dialog-content
-				md-input-container.md-block
-					label CEP
-					input(ng-model='new.cep', ng-change="getAddressByCEP()", ui-br-cep-mask, type='text')
-					span.ref
-				md-input-container.md-block
+			div(layout='row')
+				md-input-container.md-block(flex='80')
 					label Endereço
-					input(ng-model='new.address', required)
-				md-input-container.md-block
-					label Categoria
-					md-select(ng-model='new.category', required)
-						md-option(ng-repeat='category in categories', ng-value='category')
-							| {{category}}
-				br
-				md-input-container.md-block
-					label Quantidade
-					input(ng-model='new.amount', type='number', min="1", required)
+					input(ng-model='new.address', type='text', required)
+				md-input-container(flex='20')
+					label Número
+					input(ng-model='new.number', required)
+
+			div(layout='row')
+				md-input-container(flex='50')
+					label Bairro
+					input(ng-model='new.district', type='text', required)
+				md-input-container(flex='30')
+					label Cidade
+					input(ng-model='new.city', required)
+				md-input-container(flex='20')
+					label Estado
+					md-select(ng-model='new.uf', required)
+						md-option(ng-repeat='state in states', ng-value='state')
+							| {{state}}
+
+			md-input-container.md-block
+				label Complemento
+				input(ng-model='new.complement', type='text', required)
+
+			md-input-container.md-block
+				label Categoria
+				md-select(ng-model='new.category', required)
+					md-option(ng-repeat='category in categories', ng-value='category')
+						| {{category}}
+			
+			md-input-container.md-block
+				label Quantidade
+				input(ng-model='new.amount', type='number', min="1", required)
+
+			md-input-container.md-block
+				label Descrição
+				textarea(ng-model='new.description', md-maxlength='150', rows='5' ,required)
 
 			md-dialog-actions(layout='row')
 

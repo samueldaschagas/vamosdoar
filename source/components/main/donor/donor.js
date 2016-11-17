@@ -15,6 +15,9 @@ angular.module("app")
 
     $scope.donations = {};
 
+    $scope.states = ["AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RO", "RS", "RR", "SC", "SE", "SP", "TO"];
+
+
     /**
      * Consulta todas as doações do usuário
      * @param uid
@@ -110,10 +113,12 @@ angular.module("app")
             .success(function(response){
               if(response.logradouro)
                 $scope.new.address = response.logradouro;
+              if(response.bairro)
+                $scope.new.district = response.bairro;
               if(response.localidade)
-                $scope.new.address += (", " + response.localidade);
+                $scope.new.city = response.localidade;
               if(response.uf)
-                $scope.new.address += (", " + response.uf);
+                $scope.new.uf = response.uf;
             })
             .error(function(){
               $mdToast.show($mdToast.simple().textContent('CEP não encontrado'));

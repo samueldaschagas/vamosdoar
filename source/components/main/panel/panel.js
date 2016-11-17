@@ -86,6 +86,8 @@ angular.module("app")
                   .success(function(response){
                       if(response.logradouro)
                         $scope.new.address = response.logradouro;
+                      if(response.bairro)
+                        $scope.new.address += (", " + response.bairro);
                       if(response.localidade)
                         $scope.new.address += (", " + response.localidade);
                       if(response.uf)

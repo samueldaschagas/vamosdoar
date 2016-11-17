@@ -18,23 +18,7 @@ script#newDonation(type='text/ng-template')
       .md-padding
         h2.md-title(style="margin: 0;") Nova Doação
 
-      md-dialog-content.md-dialog-content
-        md-input-container.md-block
-          label CEP
-          input(ng-model='new.cep', ng-change="getAddressByCEP()", ui-br-cep-mask, type='text')
-          span.ref
-        md-input-container.md-block
-          label Endereço
-          input(ng-model='new.address', required)
-        md-input-container.md-block
-          label Categoria
-          md-select(ng-model='new.category', required)
-            md-option(ng-repeat='category in categories', ng-value='category')
-              | {{category}}
-        br
-        md-input-container.md-block
-          label Quantidade
-          input(ng-model='new.amount', type='number', min="1", required)
+  
 
       md-dialog-actions(layout='row')
 
