@@ -1,26 +1,4 @@
 angular.module("app")
-  .constant("TRANSLATIONURL", "https://translation.handtalk.me/")
-
-  .constant("CHARTOPTIONS", {
-    scaleShowGridLines: false,
-    scaleGridLineWidth: 1,
-    scaleShowVerticalLines: false,
-    scaleShowHorizontalLines: false,
-    bezierCurve: false,
-    pointDot: true,
-    datasetStrokeWidth: 0.5,
-    percentageInnerCutout: 80,
-    animationEasing: "easeInOut",
-    colours : [
-      "#9FA8DA",
-      "#FFAB91",
-      "#AAAAAA",
-      "#F48FB1",
-      "#FFF59D",
-      "#CE93D8",
-      "#E6EE9C"
-    ]
-  })
 
   .constant("ERRORCODES", {
     "AUTH_REQURIRED": "Você não está mais autenticado",
@@ -59,9 +37,7 @@ angular.module("app")
       });
     }
 
-    function getPermission() {
-
-    }
+    function getPermission() {}
 
     return {
       requireAuth: requireAuth,
