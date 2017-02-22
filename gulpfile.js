@@ -1,7 +1,6 @@
 var fs = require("fs");
 var rev = require("gulp-rev");
 var del = require("del");
-var exec = require("child_process").exec;
 var path = require("path");
 var gulp = require("gulp");
 var jade = require("gulp-jade");
@@ -178,36 +177,3 @@ gulp.task("watch-jade", function (done) { runSequence("jade", "reload", done); }
  * Default Task - Runs build, serve, watch
  */
 gulp.task("default", function (done) { runSequence("build", "serve", "watch", done); });
-
-/**
- * Runs the "firebase deploy" command line
- */
-gulp.task("firebase-deploy", function (done) {
-  exec("firebase deploy", function (err, stdout, stderr) {
-    if (err) console.error(err);
-    if (stderr) console.error(stderr);
-    if (stdout) console.info(stdout);
-    done();
-  });
-});
-
-/**
- * Builds and uploads to Firebase
- */
-gulp.task("deploy", function (done) {
-  PRODUCTION = true;
-  runSequence("build", "firebase-deploy", done);
-});
-
-/**
- * Runs the "firebase deploy --only database" command line
- */
-gulp.task("deploy-database", function (done) {
-  console.log("Iniciando Deploy...");
-  exec("firebase deploy --only database", function (err, stdout, stderr) {
-    if (err) console.error(err);
-    if (stderr) console.error(stderr);
-    if (stdout) console.info(stdout);
-    done();
-  });
-});
