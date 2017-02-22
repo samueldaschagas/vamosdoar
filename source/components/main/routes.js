@@ -27,8 +27,11 @@ angular.module("app")
       })
 
       .state("donor", {
-          url: "/doador",
-          controller: "Donor.Controller",
-          templateUrl: "donor"
+        url: "/doador",
+        controller: "Donor.Controller",
+        templateUrl: "donor",
+        resolve: {
+          currentUser: PERMISSION.getCurrentUser()
+        }
       });
   });

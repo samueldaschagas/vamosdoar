@@ -1,5 +1,5 @@
 angular.module("app")
-  .controller("Donor.Controller", function ($scope, Auth, $state, $mdDialog, $mdToast, $http, $timeout, Ref) {
+  .controller("Donor.Controller", function ($scope, Auth, $state, $mdDialog, $mdToast, $http, $timeout, Ref, currentUser) {
 
     // Referência das doações
     var donationsRef = Ref.child("donations");

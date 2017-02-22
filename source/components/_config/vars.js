@@ -1,6 +1,4 @@
 angular.module("app")
-
-  // Esta variável está em jade/_mixins/head.jade
   .constant("TRANSLATIONURL", "https://translation.handtalk.me/")
 
   .constant("CHARTOPTIONS", {
@@ -35,10 +33,6 @@ angular.module("app")
 
   .factory('PermissionUtils', function (Ref, Auth, $q) {
 
-    /**
-     *
-     * @returns {*}
-     */
     function requireAuth() {
       return $q(function (resolve, reject) {
         Auth.onAuthStateChanged(observer);
@@ -65,9 +59,14 @@ angular.module("app")
       });
     }
 
+    function getPermission() {
+
+    }
+
     return {
       requireAuth: requireAuth,
-      getRole: getRole
+      getRole: getRole,
+      getPermission: getPermission
     };
   })
 
@@ -78,13 +77,10 @@ angular.module("app")
           .then(PermissionUtils.getRole);
       }];
     },
-    requireNoAuth: ['PermissionUtils', '$q', function (PermissionUtils, $q) {
-      return $q(function (resolve, reject) {
-        PermissionUtils.requireAuth()
-          .then(function () {
-            return reject('USER_IS_AUTHENTICATED');
-          }, resolve);
-      });
-    }]
+    getCurrentUser: function () {
+      return ['PermissionUtils', function (PermissionUtils) {
+        return PermissionUtils.requireAuth();
+      }]
+    }
   })
 ;
