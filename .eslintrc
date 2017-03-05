@@ -4,7 +4,8 @@
   "globals": {
     "angular": true,
     "google": true,
-    "moment": true
+    "moment": true,
+    "_": true
   },
   "rules": {
     "no-param-reassign": 0,
