@@ -2,6 +2,13 @@
   "extends": "airbnb-base/legacy",
   "plugins": ["import"],
   "globals": {
-    "angular": true
+    "angular": true,
+    "google": true,
+    "moment": true
+  },
+  "rules": {
+    "no-param-reassign": 0,
+    "func-names": 0,
+    "max-len": ["error", 120]
   }
 }
