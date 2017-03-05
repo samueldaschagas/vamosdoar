@@ -1,0 +1,82 @@
+script#donor(type="text/ng-template")
+	.white-bg(layout-fill, style="height:100%; width:100%;", layout="column", layout-align="start center")
+
+		.md-padding(layout="row", layout-wrap="")
+			md-card(style="width: 350px;", ng-repeat="(key, donation) in donations")
+				md-card-content
+					h2 {{donation.category}}
+					h3 {{donation.address}}
+					h5 {{donation.amount}}
+
+					p
+						| Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+				.md-actions(layout='row', layout-align='end center')
+					md-button(ng-click="editDonation(key)") Editar
+					md-button Excluir
+
+	md-button.md-fab.md-fab-bottom-right.md-accent(ng-click="addDonation($event)") +
+
+
+script#donationModal(type='text/ng-template')
+	md-dialog(aria-label='Modal de Doação', style="width: 600px; max-width: 100%;", layout-padding='')
+		form(name="donationForm", novalidate)
+			.md-padding
+				h2.md-title(style="margin: 0;", ng-if="!isEdit") Nova Doação
+				h2.md-title(style="margin: 0;", ng-if="isEdit") Editar Doação
+	
+			md-input-container.md-block
+				label CEP
+				input(ng-model='new.cep', ng-change="getAddressByCEP()", ui-br-cep-mask, type='text')
+				span.ref
+
+			div(layout='row')
+				md-input-container.md-block(flex='80')
+					label Endereço
+					input(ng-model='new.address', type='text', required)
+				md-input-container(flex='20')
+					label Número
+					input(ng-model='new.number', required)
+
+			div(layout='row')
+				md-input-container(flex='50')
+					label Bairro
+					input(ng-model='new.district', type='text', required)
+				md-input-container(flex='30')
+					label Cidade
+					input(ng-model='new.city', required)
+				md-input-container(flex='20')
+					label Estado
+					md-select(ng-model='new.uf', required)
+						md-option(ng-repeat='state in states', ng-value='state')
+							| {{state}}
+
+			md-input-container.md-block
+				label Complemento
+				input(ng-model='new.complement', type='text', required)
+
+			md-input-container.md-block
+				label Categoria
+				md-select(ng-model='new.category', required)
+					md-option(ng-repeat='category in categories', ng-value='category')
+						| {{category}}
+			
+			md-input-container.md-block
+				label Quantidade
+				input(ng-model='new.amount', type='number', min="1", required)
+
+			md-input-container.md-block
+				label Descrição
+				textarea(ng-model='new.description', md-maxlength='150', rows='5' ,required)
+
+			md-dialog-actions(layout='row')
+
+				md-button(ng-click="new = {}")
+					| Limpar tudo
+
+				md-button(ng-click="dialogCancel()")
+					| Cancelar
+
+				md-button.md-raised.md-accent(ng-click="dialogHide('add')", ng-disabled="donationForm.$invalid", ng-if="!isEdit")
+					| Adicionar
+				md-button.md-raised.md-accent(ng-click="dialogHide('edit')", ng-disabled="donationForm.$invalid", ng-if="isEdit")
+					| Atualizar

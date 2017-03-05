@@ -10,7 +10,7 @@ script#panel(type='text/ng-template')
     md-content(style="height:60%; width: 60%;")
       #map
 
-  md-button.md-fab.md-fab-bottom-right.md-accent(ng-click="newDonation($event)") +
+  //- md-button.md-fab.md-fab-bottom-right.md-accent(ng-click="newDonation($event)") +
 
 script#newDonation(type='text/ng-template')
   md-dialog(aria-label='Nova Doação', style="width: 600px; max-width: 100%;")
@@ -18,25 +18,17 @@ script#newDonation(type='text/ng-template')
       .md-padding
         h2.md-title(style="margin: 0;") Nova Doação
 
-      md-dialog-content.md-dialog-content
-        md-input-container.md-block
-          label Endereço
-          input(ng-model='new.address')
-        md-input-container.md-block
-          br
-          label Categoria
-          input(ng-model='new.category')
-        md-input-container.md-block
-          br
-          label Quantidade
-          input(ng-model='new.amount')
+  
 
       md-dialog-actions(layout='row')
+
+        md-button(ng-click="new = {}")
+          | Limpar tudo
 
         md-button(ng-click="dialogCancel()")
           | Cancelar
 
-        md-button.md-raised.md-accent(ng-click="dialogHide('donation')")
+        md-button.md-raised.md-accent(ng-click="dialogHide('donation')", ng-disabled="newDonationForm.$invalid")
           | Adicionar
 
 

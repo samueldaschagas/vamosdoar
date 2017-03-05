@@ -1,5 +1,5 @@
 {
-  "name": "Vamos Doar!",
+  "name": "vamos-doar",
   "version": "1.0.0",
   "authors": [
     "Rodrigo Bastos <rodrigorozendobastos@gmail.com>",
@@ -28,7 +28,8 @@
     "angular-ui-router": "^0.3.0",
     "ng-clip": "~0.2.6",
     "angular-cookies": "~1.5.6",
-    "angularfire": "^2.0.1"
+    "angularfire": "^2.0.1",
+    "angular-input-masks": "^2.5.0"
   },
   "resolutions": {
     "angular": "~1.4.8"

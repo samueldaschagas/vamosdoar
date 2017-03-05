@@ -1,12 +1,11 @@
 angular.module('app')
 
   // Ref do Firebase
-  .factory('Ref', function() {
+  .factory('Ref', function () {
     return firebase.database().ref('/');
   })
 
   // Firebase Auth
-  .factory('Auth', function() {
+  .factory('Auth', function () {
     return firebase.auth();
-  })
-;
+  });

@@ -5,8 +5,8 @@ html.no-js(lang=locale)
   head
     script(src="https://js.iugu.com/v2")
     include _mixins/head
-    script(src='//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
-    script(src='http://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js')
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+    script(src="http://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js")
     script(src=manifest['js/main.js'])
 
   body(ng-app='app', layout="column", ng-cloak, ng-controller="MainCtrl")
@@ -14,5 +14,7 @@ html.no-js(lang=locale)
       md-content.grey-bg(ui-view, flex, layout="column", layout-align="start center")
         +preloader
     //- Templates
+    include main/home/home
     include main/account/account
     include main/panel/panel
+    include main/donor/donor
