@@ -1,0 +1,7 @@
+{
+  "extends": "airbnb-base/legacy",
+  "plugins": ["import"],
+  "globals": {
+    "angular": true
+  }
+}
