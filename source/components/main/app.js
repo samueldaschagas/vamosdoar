@@ -1,6 +1,6 @@
-angular.module("app", [
-  "ui.router",
-  "ngMaterial",
-  "ngMessages",
-  "ui.utils.masks"
+angular.module('app', [
+  'ui.router',
+  'ngMaterial',
+  'ngMessages',
+  'ui.utils.masks'
 ]);
