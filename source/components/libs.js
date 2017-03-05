@@ -7,8 +7,6 @@
 //= include ../../bower_components/angular-cookies/angular-cookies.js
 //= include ../../bower_components/lodash/lodash.js
 //= include ../../bower_components/moment/min/moment-with-locales.min.js
-//= include ../../bower_components/Chart.js/Chart.js
-//= include ../../bower_components/angular-chart.js/dist/angular-chart.js
 //= include ../../bower_components/angular-input-masks/angular-input-masks-standalone.min.js
 
 moment.locale("pt");

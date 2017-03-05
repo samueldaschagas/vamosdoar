@@ -1,17 +1,19 @@
-angular.module("app")
-  .controller("MainCtrl", function ($scope, Auth, Ref, $mdSidenav, $window, $timeout, $state) {
+function MainController($scope, $timeout, $state, Auth) {
+  // Observa mudança no estado da autenticação
+  Auth.onAuthStateChanged(function (currentUser) {
+    // Usuário não autenticado, redirecione para login
+    if (!currentUser) $state.go('account');
 
-    Auth.onAuthStateChanged(function (currentUser) {
-      if (!currentUser) $state.go("account");
-
-      $timeout(function () {
-        $scope.currentUser = currentUser;
-      });
+    // Atualiza usuário atual
+    $timeout(function () {
+      $scope.currentUser = currentUser;
     });
+  });
 
-    $scope.logout = function () {
-      Auth.signOut();
-    };
+  /**
+   * Sair do sistema
+   */
+  $scope.logout = function () { Auth.signOut(); };
+}
 
-  })
-;
+angular.module('app').controller('MainCtrl', MainController);
