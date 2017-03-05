@@ -5,7 +5,8 @@
     "angular": true,
     "google": true,
     "moment": true,
-    "_": true
+    "_": true,
+    "firebase": true
   },
   "rules": {
     "no-param-reassign": 0,
