@@ -1,37 +1,44 @@
-angular.module("app")
+/**
+ * Configuração de rotas
+ * @param $stateProvider
+ * @param $urlRouterProvider
+ * @param PERMISSION
+ */
+function mainRouteConfig($stateProvider, $urlRouterProvider, PERMISSION) {
+  // Rota inicial
+  $urlRouterProvider.otherwise('/home');
 
-  .config(function ($stateProvider, $urlRouterProvider, PERMISSION) {
+  $stateProvider
+    // Home
+    .state('home', {
+      url: '/home',
+      controller: 'Home.Controller',
+      templateUrl: 'home',
+      resolve: {
+        currentUserRole: PERMISSION.requireRole()
+      }
+    })
+    // Contas
+    .state('account', {
+      url: '/account?state',
+      controller: 'MainAccount.Controller',
+      templateUrl: 'account'
+    })
+    // Painel da instituição
+    .state('panel', {
+      url: '/instituicao',
+      controller: 'MainPanel.Controller',
+      templateUrl: 'panel'
+    })
+    // Painel do doador
+    .state('donor', {
+      url: '/doador',
+      controller: 'Donor.Controller',
+      templateUrl: 'donor',
+      resolve: {
+        currentUser: PERMISSION.getCurrentUser()
+      }
+    });
+}
 
-    $urlRouterProvider.otherwise("/home");
-
-    $stateProvider
-      .state("home", {
-        url: "/home",
-        controller: "Home.Controller",
-        templateUrl: "home",
-        resolve: {
-          currentUserRole: PERMISSION.requireRole()
-        }
-      })
-
-      .state("account", {
-        url: "/account?state",
-        controller: "MainAccount.Controller",
-        templateUrl: "account"
-      })
-
-      .state("panel", {
-        url: "/instituicao",
-        controller: "MainPanel.Controller",
-        templateUrl: "panel"
-      })
-
-      .state("donor", {
-        url: "/doador",
-        controller: "Donor.Controller",
-        templateUrl: "donor",
-        resolve: {
-          currentUser: PERMISSION.getCurrentUser()
-        }
-      });
-  });
+angular.module('app').config(mainRouteConfig);
