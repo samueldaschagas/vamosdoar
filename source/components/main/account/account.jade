@@ -9,6 +9,8 @@ script#account(type='text/ng-template')
             br
 
         md-card-content
+          div(layout-align="center", layout="row")
+            img(src="images/logo.png", class="main-logo")
           div(ng-if="$stateParams.state === 'signup'")
             md-checkbox(ng-model='user.isInstitution', aria-label='Instituição') Instituição
             md-input-container.md-block

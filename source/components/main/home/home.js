@@ -12,4 +12,6 @@ angular.module("app")
 
     return $state.go("account", { state: "login" });
 
+    console.log($state.current);
+
   });

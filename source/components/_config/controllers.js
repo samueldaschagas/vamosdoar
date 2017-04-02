@@ -4,6 +4,8 @@ angular.module("app")
     Auth.onAuthStateChanged(function (currentUser) {
       if (!currentUser) $state.go("account");
 
+       $scope.currentState = $state.current.templateUrl;
+
       $timeout(function () {
         $scope.currentUser = currentUser;
       });
@@ -12,6 +14,8 @@ angular.module("app")
     $scope.logout = function () {
       Auth.signOut();
     };
+
+   
 
   })
 ;

@@ -2,10 +2,10 @@ script#donor(type="text/ng-template")
 	.white-bg(layout-fill, style="height:100%; width:100%;", layout="column", layout-align="start center")
 
 		.md-padding(layout="row", layout-wrap="")
-			md-card(style="width: 350px;", ng-repeat="(key, donation) in donations")
+			md-card(style="width: 350px;", ng-repeat="(key, donation) in donations", class="card-donation")
 				md-card-content
-					h2 {{donation.category}}
-					h3 {{donation.address}}
+					h3 {{donation.category}}
+					h4 {{donation.address}}
 					h5 {{donation.amount}}
 
 					p

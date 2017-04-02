@@ -5,7 +5,7 @@
 @import 'partials/custom';
 
 .md-toolbar-tools {
-	background-color: rgb(100, 154, 193);
+	background-color: #fff;
 	color: #fff;
 }
 
@@ -28,6 +28,7 @@ h2 {
 .search-content {
 	width: 65%;
     margin: 45px auto 15px;
+	
 	label {
 		font-size: 18px;
 	}
@@ -102,5 +103,14 @@ h2 {
 .md-fab, .is-enabled {
 	background-color: #e67e22 !important;
 }
+
+.main-logo {
+	height: 26px;
+}
+
+.card-donation {
+	border-bottom: 3px solid #ff327b;
+}
+
 
 
