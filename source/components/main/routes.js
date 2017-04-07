@@ -41,4 +41,15 @@ function mainRouteConfig($stateProvider, $urlRouterProvider, PERMISSION) {
     });
 }
 
-angular.module('app').config(mainRouteConfig);
+angular.module('app')
+    .config(mainRouteConfig)
+    .run( function($rootScope, $location) {
+        $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){ 
+            if (toState.url === "/account?state" || (toState.url === "/home" && fromState.url === "/account?state"))
+                $rootScope.hasTopbar = false;
+            else
+                $rootScope.hasTopbar = true;
+        })
+    });
+
+  
