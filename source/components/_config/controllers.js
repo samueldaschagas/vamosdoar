@@ -15,7 +15,5 @@ angular.module("app")
       Auth.signOut();
     };
 
-   
-
   })
 ;

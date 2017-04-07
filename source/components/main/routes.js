@@ -31,4 +31,14 @@ angular.module("app")
           controller: "Donor.Controller",
           templateUrl: "donor"
       });
-  });
+  }).run( function($rootScope, $location) {
+  
+    $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){ 
+        let url = toState.url;
+
+        if (url === "/home" || url === "/account?state")
+            $rootScope.hasTopbar = false;
+        else
+           $rootScope.hasTopbar = true;
+    })
+ });
