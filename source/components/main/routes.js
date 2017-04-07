@@ -34,9 +34,7 @@ angular.module("app")
   }).run( function($rootScope, $location) {
   
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){ 
-        let url = toState.url;
-
-        if (url === "/home" || url === "/account?state")
+        if (toState.url === "/account?state" || (toState.url === "/home" && fromState.url === "/account?state"))
             $rootScope.hasTopbar = false;
         else
            $rootScope.hasTopbar = true;
