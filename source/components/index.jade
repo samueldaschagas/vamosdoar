@@ -1,21 +1,7 @@
-include _mixins/partials
-include _mixins/fields
 doctype html
-html.no-js(lang=locale)
+html
   head
-    script(src="https://js.iugu.com/v2")
-    include _mixins/head
-    script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
-    script(src="http://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js")
-    script(src=manifest['js/main.js'])
+    title Website Vamos Doar!
 
-  body(ng-app='app', layout="column", ng-cloak, ng-controller="MainCtrl")
-    +toolbar('Login')
-      md-content.grey-bg(ui-view, flex, layout="column", layout-align="start center")
-        | Homepage
-
-    //- Templates
-    include main/home/home
-    include main/account/account
-    include main/panel/panel
-    include main/donor/donor
+  body
+    h3 Website!
