@@ -6,7 +6,7 @@
  */
 function mainRouteConfig($stateProvider, $urlRouterProvider, PERMISSION) {
   // Rota inicial
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/');
 
   $stateProvider
     // Home
@@ -45,7 +45,9 @@ angular.module('app')
     .config(mainRouteConfig)
     .run( function($rootScope, $location) {
         $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){ 
-            if (toState.url === "/account?state" || (toState.url === "/home" && fromState.url === "/account?state"))
+            if (toState.url === "/account?state" || toState.url === "/home" ||
+                (toState.url === "/home" && fromState.url === "/account?state")
+            )
                 $rootScope.hasTopbar = false;
             else
                 $rootScope.hasTopbar = true;

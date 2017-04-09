@@ -12,8 +12,8 @@ html.no-js(lang=locale)
   body(ng-app='app', layout="column", ng-cloak, ng-controller="MainCtrl")
     +toolbar('Login')
       md-content.grey-bg(ui-view, flex, layout="column", layout-align="start center")
-        | Homepage
-
+        +preloader
+        
     //- Templates
     include main/home/home
     include main/account/account
