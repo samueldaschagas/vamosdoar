@@ -1,7 +1,38 @@
 doctype html
 html
   head
-    title Website Vamos Doar!
+    title Vamos Doar!
+    link(rel='stylesheet', href=manifest['css/homepage.css'])
+    link(rel='stylesheet', href="https://fonts.googleapis.com/icon?family=Material+Icons")
 
   body
-    h3 Website!
+    header.Header
+        .Header__topbar
+          .container
+            .Header__left
+                a(href='#')
+                  img.Header__logo(src='images/logo.png')
+            .Header__right
+                ul
+                  li
+                    a(href='app#/account?state=signup') Cadastrar
+                  li
+                    a.Header__btnLogin(href='app#/account?state=login') Login
+
+        .container.Header__containerTitulo
+          h1.Header__tituloPrincipal 
+            | Uma forma inovadora de fazer doações. <br> Nosso novo hábito.  
+
+        .container
+          a(href='#')
+            i.material-icons.Header__iconeVerMais keyboard_arrow_down
+
+    main.Main
+        .Main__comoFunciona 
+          .container
+            .Main__doador
+              
+            .Main__instituicao
+              
+            .Main__beneficiado
+              

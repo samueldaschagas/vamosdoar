@@ -1,0 +1,132 @@
+$cor-primaria: #e93578;
+$cor-secundaria: #415877;
+
+body {
+  margin: 0;
+  font-family: 'Helvetica';
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 980px;
+    margin: auto;
+}
+
+.Header {
+    min-height: 550px;
+    display: block;
+    position: relative;
+}
+
+.Header::after {
+    content: "";
+    background: url("../images/bg-header.jpg") no-repeat center center;
+    background-size: cover;
+    opacity: 0.2;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1; 
+}
+
+.Header__topbar {
+    padding: 40px 0;
+}
+
+.Header__left {
+   flex: 1;
+}
+
+.Header__right {
+   flex: 1;
+
+   ul {
+      display: inline;
+      float: right;
+      list-style: none;
+   }
+
+   li {
+      float: left;
+      padding: 0 15px;
+
+      a {
+          text-decoration: none;
+          text-transform: uppercase;
+          font-size: 15px;
+          font-weight: 600;
+          color: $cor-secundaria;
+          transition: 0.3s;
+
+          &:hover {
+              opacity: 0.8;
+          }
+      }
+
+      .Header__btnLogin {
+          background-color: $cor-primaria;
+          padding: 15px 70px;
+          color: #fff;
+          border-radius: 26px;
+          -webkit-box-shadow: -1px 2px 5px -1px rgba(0,0,0,0.4);
+          -moz-box-shadow: -1px 2px 5px -1px rgba(0,0,0,0.4);
+          box-shadow: -1px 2px 5px -1px rgba(0,0,0,0.4);
+
+          &:hover {
+              opacity: 1;
+              -webkit-box-shadow: -2px 4px 5px -1px rgba(0,0,0,0.4);
+              -moz-box-shadow: -2px 4px 5px -1px rgba(0,0,0,0.4);
+              box-shadow: -2px 4px 5px -1px rgba(0,0,0,0.4);
+          }
+      }
+   }
+}
+
+.Header__logo {
+    height: 35px;
+}
+
+.Header__tituloPrincipal {
+    font-size: 40px;
+    text-transform: uppercase;
+    text-align: center;
+    color: $cor-secundaria;
+}
+
+.Header__containerTitulo {
+    display: flex;
+    min-height: 400px;
+}
+
+.Header__iconeVerMais {
+    font-size: 75px !important;
+    color: $cor-primaria;
+    margin-bottom: 80px;
+    margin-top: -80px;
+    transition: 0.3s;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+.Main__doador {
+    flex: 1;
+    text-align: center;
+}
+
+.Main__instituicao {
+    flex: 1;
+    text-align: center;
+}
+
+.Main__beneficiado {
+    flex: 1;
+    text-align: center;
+}
