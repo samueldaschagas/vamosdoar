@@ -1,5 +1,6 @@
 $cor-primaria: #e93578;
 $cor-secundaria: #415877;
+$cor-preto: #333;
 
 body {
   margin: 0;
@@ -69,23 +70,29 @@ body {
           }
       }
 
-      .Header__btnLogin {
-          background-color: $cor-primaria;
-          padding: 15px 70px;
-          color: #fff;
-          border-radius: 26px;
-          -webkit-box-shadow: -1px 2px 5px -1px rgba(0,0,0,0.4);
-          -moz-box-shadow: -1px 2px 5px -1px rgba(0,0,0,0.4);
-          box-shadow: -1px 2px 5px -1px rgba(0,0,0,0.4);
-
-          &:hover {
-              opacity: 1;
-              -webkit-box-shadow: -2px 4px 5px -1px rgba(0,0,0,0.4);
-              -moz-box-shadow: -2px 4px 5px -1px rgba(0,0,0,0.4);
-              box-shadow: -2px 4px 5px -1px rgba(0,0,0,0.4);
-          }
-      }
    }
+}
+      
+.Header__btnLogin {
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: $cor-primaria;
+    padding: 15px 70px;
+    color: #fff !important;
+    transition: 0.3s;
+    border-radius: 26px;
+    -webkit-box-shadow: -1px 2px 5px -1px rgba(0,0,0,0.4);
+    -moz-box-shadow: -1px 2px 5px -1px rgba(0,0,0,0.4);
+    box-shadow: -1px 2px 5px -1px rgba(0,0,0,0.4);
+
+    &:hover {
+        opacity: 1 !important;
+        -webkit-box-shadow: -2px 4px 5px -1px rgba(0,0,0,0.4);
+        -moz-box-shadow: -2px 4px 5px -1px rgba(0,0,0,0.4);
+        box-shadow: -2px 4px 5px -1px rgba(0,0,0,0.4);
+    }
 }
 
 .Header__logo {
@@ -116,17 +123,75 @@ body {
     }
 }
 
-.Main__doador {
+.Main__comoFunciona {
+    padding: 80px 0;
+
+    h3 {
+        color: $cor-secundaria;
+        text-transform: uppercase;
+        text-align: center;
+        margin: 0 0 70px;
+        width: 100%;
+    }
+
+    .material-icons {
+        font-size: 110px;
+    }
+
+    .container {
+        align-items: baseline;
+    }
+}
+
+.Main__agente {
     flex: 1;
     text-align: center;
+    padding: 0 40px;
+    color: $cor-preto;
+
+    h4 {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 20px 0 15px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
+.Main__doador {
+    .material-icons {
+        color: $cor-secundaria;
+    }
 }
 
 .Main__instituicao {
-    flex: 1;
-    text-align: center;
+    .material-icons {
+        color: $cor-secundaria;
+    }
 }
 
 .Main__beneficiado {
-    flex: 1;
-    text-align: center;
+    .material-icons {
+        color: $cor-primaria;
+    }
 }
+
+.Main__CTA {
+    background-color: $cor-secundaria;
+    padding: 60px 0;
+}
+
+.Main__CTA-left {
+    font-size: 25px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    flex: 2;
+}
+
+.Main__CTA-right {
+    flex: 1;
+}
+

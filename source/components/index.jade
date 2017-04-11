@@ -28,11 +28,31 @@ html
             i.material-icons.Header__iconeVerMais keyboard_arrow_down
 
     main.Main
-        .Main__comoFunciona 
+        section.Main__comoFunciona 
+          h3
+            | Como funciona
           .container
-            .Main__doador
-              
-            .Main__instituicao
-              
-            .Main__beneficiado
-              
+            .Main__agente.Main__doador
+              i.material-icons person_outline
+              h4 Doador
+              p 
+                | Cadastra novas doações (alimentos, brinquedos, roupas, entre outros tipos), disponibilizando-as no mapa para as instituições cadastradas.
+
+            .Main__agente.Main__instituicao
+              i.material-icons account_balance
+              h4 Instituição
+              p
+                | Visualiza no mapa todas as doações e seleciona quais são do seu interesse.
+
+            .Main__agente.Main__beneficiado
+              i.material-icons favorite
+              h4 Beneficiado
+              p
+                | Recebe doações, vindas de doadores, que são repassadas por meio das instituições.
+
+        section.Main__CTA
+          .container
+            .Main__CTA-left
+              | Quer colaborar com quem mais precisa? 
+            .Main__CTA-right
+              a.Header__btnLogin(href='app#/account?state=login') Começar Agora
