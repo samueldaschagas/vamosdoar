@@ -32,19 +32,19 @@ html
           h3
             | Como funciona
           .container
-            .Main__agente.Main__doador
+            .Main__doador.Main__agente
               i.material-icons person_outline
               h4 Doador
               p 
                 | Cadastra novas doações (alimentos, brinquedos, roupas, entre outros tipos), disponibilizando-as no mapa para as instituições cadastradas.
 
-            .Main__agente.Main__instituicao
+            .Main__instituicao.Main__agente
               i.material-icons account_balance
               h4 Instituição
               p
                 | Visualiza no mapa todas as doações e seleciona quais são do seu interesse.
 
-            .Main__agente.Main__beneficiado
+            .Main__beneficiado.Main__agente
               i.material-icons favorite
               h4 Beneficiado
               p
@@ -56,3 +56,16 @@ html
               | Quer colaborar com quem mais precisa? 
             .Main__CTA-right
               a.Header__btnLogin(href='app#/account?state=login') Começar Agora
+    
+    footer.Footer
+        .container
+          .Footer__left
+            a(href='#')
+                img(src='images/logo-footer.png')
+          .Footer__right
+            a(href='#')
+                img(src='images/facebook-logo.png')
+            a(href='#')
+                img(src='images/instagram-logo.png')
+            a(href='#')
+                img(src='images/email.png')

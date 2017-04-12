@@ -195,3 +195,22 @@ body {
     flex: 1;
 }
 
+.Footer {
+    padding: 120px 0 80px;
+}
+
+.Footer__left {
+    flex: 1;
+    text-align: left;
+}
+
+.Footer__right {
+    flex: 1;
+    text-align: right;
+    align-items: center;
+
+    a {
+        padding: 10px;
+    }
+}
+
