@@ -4,6 +4,8 @@ html
     title Vamos Doar!
     link(rel='stylesheet', href=manifest['css/homepage.css'])
     link(rel='stylesheet', href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+    script(src=manifest['js/homepage.js'])
 
   body
     header.Header
@@ -24,10 +26,10 @@ html
             | Uma forma inovadora de fazer doações. <br> Nosso novo hábito.  
 
         .container
-          a(href='#')
+          a(href='#conteudo-principal')
             i.material-icons.Header__iconeVerMais keyboard_arrow_down
 
-    main.Main
+    main.hello.Main#conteudo-principal
         section.Main__comoFunciona 
           h3
             | Como funciona
