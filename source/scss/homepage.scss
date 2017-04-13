@@ -235,3 +235,77 @@ body {
    }
 }
 
+/* Telefones em landscape e abaixo */
+@media (max-width: 480px) { 
+        .Header__btnLogin {
+            padding: 15px 60px;
+        }
+ }
+/* Telefone em landscape a tablet em portrait */
+@media (max-width: 767px) { 
+    .Header {
+        min-height: auto;
+        max-height: 480px;
+    }
+
+    .Header__tituloPrincipal {
+        font-size: 30px;
+        margin: 15px;
+    }
+    
+    .Header__containerTitulo {
+        min-height: 300px;
+    }
+    
+    .Main {
+        .container {
+            flex-direction: column;
+        }
+        .Main__agente {
+            margin: 25px auto;
+            text-align: center;
+        }
+        .Main__comoFunciona {
+            padding: 50px 0;
+
+            h3 {
+                margin-bottom: 20px;
+            }
+        }
+        .Main__CTA-left {
+            flex: 1;
+            margin: 0 20px 40px;
+            text-align: center;
+        }
+        .Main__CTA-right {
+            flex: 1;
+        }
+    }
+
+    .Footer {
+        .container {
+            flex-direction: column;
+        }
+    }
+ }
+/* tablet em portrait a landscape e desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+    .Main__CTA {
+        .container {
+            flex-direction: column;
+        }
+    }
+    .Main__CTA-left {
+        margin-bottom: 40px;
+    }
+    .Footer__left {
+        img {
+            margin-left: 20px;
+        }
+    }
+}
+/* Desktop grande */
+@media (min-width: 1200px) { 
+    
+ }
+
