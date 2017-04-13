@@ -1,6 +1,8 @@
 $cor-primaria: #e93578;
 $cor-secundaria: #415877;
 $cor-preto: #333;
+$cor-cinza-escuro: #777;
+$cor-branco: #fff;
 
 body {
   margin: 0;
@@ -80,7 +82,7 @@ body {
     text-transform: uppercase;
     background-color: $cor-primaria;
     padding: 15px 70px;
-    color: #fff !important;
+    color: $cor-branco !important;
     transition: 0.3s;
     border-radius: 26px;
     -webkit-box-shadow: -1px 2px 5px -1px rgba(0,0,0,0.4);
@@ -185,7 +187,7 @@ body {
 
 .Main__CTA-left {
     font-size: 25px;
-    color: #fff;
+    color: $cor-branco;
     text-transform: uppercase;
     font-weight: 600;
     flex: 2;
@@ -212,5 +214,24 @@ body {
     a {
         padding: 10px;
     }
+
+    ul {
+        float: right;
+        list-style: none;
+        display: flex;
+        align-items: center;
+
+        li {
+            display: inline;
+
+            &:last-child a {
+                margin-top: -10px;
+                padding-left: 0;
+                font-size: 14px;
+                color: $cor-cinza-escuro;
+                text-decoration: none;
+            }
+        }
+   }
 }
 
