@@ -235,11 +235,28 @@ body {
    }
 }
 
+.Header__containerTitulo {
+    .Header__btnLogin {
+        display: none;
+        width: 50%;
+        margin: 45px auto;
+    }
+}
+
+.LogoMobile {
+    display: none;
+}
+
 /* Telefones em landscape e abaixo */
 @media (max-width: 480px) { 
-        .Header__btnLogin {
-            padding: 15px 60px;
+    .Header__btnLogin {
+        padding: 15px 60px;
+    }
+    .Footer__right {
+        .email {
+            display: none;
         }
+    }
  }
 /* Telefone em landscape a tablet em portrait */
 @media (max-width: 767px) { 
@@ -255,6 +272,17 @@ body {
     
     .Header__containerTitulo {
         min-height: 300px;
+        .Header__btnLogin {
+            display: block;
+        }
+    }
+
+    .Header__left, .Header__right {
+        display: none;
+    }
+
+    .LogoMobile {
+        display: block;
     }
     
     .Main {
@@ -308,4 +336,5 @@ body {
 @media (min-width: 1200px) { 
     
  }
+
 

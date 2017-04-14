@@ -3,7 +3,8 @@ html
   head
     title Vamos Doar!
     link(rel='stylesheet', href=manifest['css/homepage.css'])
-    link(rel='stylesheet', href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    link(rel='stylesheet', href="//fonts.googleapis.com/icon?family=Material+Icons")
+    link(rel='stylesheet', href="//cdnjs.cloudflare.com/ajax/libs/jQuery.mmenu/6.0.2/jquery.mmenu.all.css")
     script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
     script(src=manifest['js/homepage.js'])
 
@@ -11,6 +12,8 @@ html
     header.Header
         .Header__topbar
           .container
+            a.LogoMobile(href='#')
+                img.Header__logo(src='images/logo.png')
             .Header__left
                 a(href='#')
                   img.Header__logo(src='images/logo.png')
@@ -23,7 +26,8 @@ html
 
         .container.Header__containerTitulo
           h1.Header__tituloPrincipal 
-            | Uma forma inovadora de fazer doações. <br> Nosso novo hábito.  
+            | Uma forma inovadora de fazer doações. <br> Nosso novo hábito. 
+            a.Header__btnLogin(href='app#/account?state=signup') Começar agora 
 
         .container
           a(href='#conteudo-principal')
@@ -75,6 +79,8 @@ html
               li
                 a(href='#')
                     img(src='images/email.png', height='40')
-              li
+              li.email
                 a(href='mailto:contato@vamosdoar.org?Subject=Contato - Vamos Doar', target='_top')
                     | contato@vamosdoar.org
+
+    
