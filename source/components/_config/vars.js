@@ -1,5 +1,4 @@
 angular.module('app')
-
   // Mensagens de erros do firebase
   .constant('ERRORCODES', {
     AUTH_REQURIRED: 'Você não está mais autenticado',

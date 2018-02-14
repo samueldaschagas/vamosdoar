@@ -5,9 +5,7 @@ function MainController($scope, $timeout, $state, Auth) {
     if (!currentUser) $state.go('account');
 
     // Atualiza usuário atual
-    $timeout(function () {
-      $scope.currentUser = currentUser;
-    });
+    $timeout(function () { $scope.currentUser = currentUser; });
   });
 
   /**
